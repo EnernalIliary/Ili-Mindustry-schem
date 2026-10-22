@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-10-22T13:59:13Z",
+  "generated_at": "2026-10-22T14:40:57Z",
   "repo": "https://github.com/EnernalIliary/Ili-Mindustry-schem",
-  "count": 671,
+  "count": 670,
   "label_order": [
     "常用",
     "ILI",
@@ -354,7 +354,7 @@
   "tags": [
     {
       "name": "运输",
-      "count": 433
+      "count": 432
     },
     {
       "name": "电力",
@@ -366,7 +366,7 @@
     },
     {
       "name": "流体",
-      "count": 242
+      "count": 241
     },
     {
       "name": "其他",
@@ -378,11 +378,11 @@
     },
     {
       "name": "功能",
-      "count": 106
+      "count": 105
     },
     {
       "name": "炮塔",
-      "count": 74
+      "count": 73
     },
     {
       "name": "单位",
@@ -397,7 +397,7 @@
     {
       "key": "distribution",
       "name": "运输",
-      "count": 433
+      "count": 432
     },
     {
       "key": "power",
@@ -412,7 +412,7 @@
     {
       "key": "liquid",
       "name": "流体",
-      "count": 242
+      "count": 241
     },
     {
       "key": "其他",
@@ -427,12 +427,12 @@
     {
       "key": "effect",
       "name": "功能",
-      "count": 106
+      "count": 105
     },
     {
       "key": "turret",
       "name": "炮塔",
-      "count": 74
+      "count": 73
     },
     {
       "key": "units",
@@ -447,7 +447,7 @@
   ],
   "logic": {
     "max_lines": 564073,
-    "with_logic": 458
+    "with_logic": 457
   },
   "blueprints": [
     {
@@ -658,110 +658,6 @@
       "preview": "data/15-3-0-d7a108/preview.png",
       "source": "blueprints/15-3-0-d7a108/blueprint.txt",
       "source_preview": "blueprints/15-3-0-d7a108/preview.png"
-    },
-    {
-      "slug": "tst-998754",
-      "name": "tst",
-      "author": "Iliary",
-      "description": "12×8，37 个方块，逻辑 433 行。从游戏内蓝图导入。",
-      "labels": [],
-      "factory": "",
-      "tags": [
-        "流体",
-        "运输",
-        "炮塔",
-        "功能"
-      ],
-      "category": "liquid",
-      "category_label": "流体",
-      "requirements": [
-        {
-          "item": "graphite",
-          "amount": 115
-        },
-        {
-          "item": "lead",
-          "amount": 1120
-        },
-        {
-          "item": "copper",
-          "amount": 948
-        },
-        {
-          "item": "metaglass",
-          "amount": 242
-        },
-        {
-          "item": "titanium",
-          "amount": 955
-        },
-        {
-          "item": "silicon",
-          "amount": 780
-        },
-        {
-          "item": "thorium",
-          "amount": 180
-        },
-        {
-          "item": "plastanium",
-          "amount": 190
-        },
-        {
-          "item": "phase-fabric",
-          "amount": 40
-        }
-      ],
-      "power_balance": -750,
-      "game_version": "",
-      "width": 12,
-      "height": 8,
-      "tiles": 37,
-      "logic_blocks": 5,
-      "logic_lines": 433,
-      "blocks": [
-        {
-          "block": "bridge-conduit",
-          "count": 6
-        },
-        {
-          "block": "micro-processor",
-          "count": 5
-        },
-        {
-          "block": "unloader",
-          "count": 4
-        },
-        {
-          "block": "cyclone",
-          "count": 2
-        },
-        {
-          "block": "liquid-container",
-          "count": 2
-        },
-        {
-          "block": "liquid-junction",
-          "count": 2
-        },
-        {
-          "block": "message",
-          "count": 2
-        },
-        {
-          "block": "water-extractor",
-          "count": 2
-        }
-      ],
-      "sha256": "79d1642b9d0b5b4a",
-      "chars": 5856,
-      "has_preview": true,
-      "created": "2026-10-21",
-      "updated": "2026-10-21",
-      "file": "data/tst-998754/blueprint.txt",
-      "preview": "data/tst-998754/preview.png",
-      "source": "blueprints/tst-998754/blueprint.txt",
-      "source_preview": "blueprints/tst-998754/preview.png"
     },
     {
       "slug": "bp-e9266b",

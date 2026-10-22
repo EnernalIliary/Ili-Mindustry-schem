@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-10-22T13:13:47Z",
+  "generated_at": "2026-10-22T13:26:13Z",
   "repo": "https://github.com/EnernalIliary/Ili-Mindustry-schem",
-  "count": 673,
+  "count": 672,
   "labels": [
     {
       "name": "ILI",
@@ -21,7 +21,7 @@
     },
     {
       "name": "显示",
-      "count": 65
+      "count": 64
     },
     {
       "name": "贴核",
@@ -307,7 +307,7 @@
     },
     {
       "name": "其他",
-      "count": 134
+      "count": 133
     },
     {
       "name": "生产",
@@ -354,7 +354,7 @@
     {
       "key": "其他",
       "name": "其他",
-      "count": 134
+      "count": 133
     },
     {
       "key": "production",
@@ -384,7 +384,7 @@
   ],
   "logic": {
     "max_lines": 564073,
-    "with_logic": 459
+    "with_logic": 458
   },
   "blueprints": [
     {
@@ -27349,51 +27349,6 @@
       "preview": "data/bp-401f51/preview.png",
       "source": "blueprints/bp-401f51/blueprint.txt",
       "source_preview": "blueprints/bp-401f51/preview.png"
-    },
-    {
-      "slug": "bp-704957",
-      "name": "我女朋友最可爱",
-      "author": "Iliary",
-      "description": "NPY真可爱",
-      "labels": [
-        "显示"
-      ],
-      "tags": [
-        "其他"
-      ],
-      "category": "other",
-      "category_label": "",
-      "requirements": [],
-      "power_balance": null,
-      "game_version": "",
-      "width": 16,
-      "height": 21,
-      "tiles": 336,
-      "logic_blocks": 156,
-      "logic_lines": 154653,
-      "blocks": [
-        {
-          "block": "tile-logic-display",
-          "count": 176
-        },
-        {
-          "block": "micro-processor",
-          "count": 156
-        },
-        {
-          "block": "message",
-          "count": 4
-        }
-      ],
-      "sha256": "8922003161faa3fd",
-      "chars": 740124,
-      "has_preview": true,
-      "created": "2026-10-18",
-      "updated": "2026-10-18",
-      "file": "data/bp-704957/blueprint.txt",
-      "preview": "data/bp-704957/preview.png",
-      "source": "blueprints/bp-704957/blueprint.txt",
-      "source_preview": "blueprints/bp-704957/preview.png"
     },
     {
       "slug": "bp-60a67e",

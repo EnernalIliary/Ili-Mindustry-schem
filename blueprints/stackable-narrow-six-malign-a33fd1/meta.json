@@ -1,0 +1,15 @@
+{
+  "name": "Stackable Narrow Six-Malign",
+  "author": "Iliary",
+  "description": "串联窄六魔灵\n——窄意味着串联火力密度大\n\n去除创伤区域和逻辑之后可单科使用\n\n待机耗布为零\n\n打开开关强制启用布热\n\n-附身魔灵控制集火。\n射击时解除附身持续集火,再次附身魔灵停火。\n\n无线供超，无线供布修，串联时在空隙塞修复吧\n\n专用逻辑，不可他用\n\nStackable Narrow Six-Malign Battery\n— \"Narrow\" means higher firepower density when chained.\n\nCan be used with a single core after removing the scathe zone and logic modules.\n\nConsumes no Phase Fabric while idle.\n\nEnable the switch to force Phase Fabric boosting.\n\n* Possession-Controlled Focus Fire\n  Possess a Malign to designate a target.\n  Once firing begins, possession is automatically released and the battery continues focusing that target.\n  Possess a Malign again to cease fire.\n\nWireless overdrive. Wireless phase-mending.\nWhen chaining multiple batteries, consider filling the gaps with repair structures.\n\nDedicated logic. Not intended for other uses.\n\nBy - [blue]Ili[#8abcd1]ary[#654321]艾铭[#6335F8]",
+  "tags": [
+    "逻辑",
+    "炮台",
+    "物流",
+    "电力",
+    "大型",
+    "逻辑261行"
+  ],
+  "created": "2026-06-02",
+  "updated": "2026-06-02"
+}

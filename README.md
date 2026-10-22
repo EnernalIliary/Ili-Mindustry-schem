@@ -72,6 +72,11 @@ python3 tools/msch_min.py              # 编解码器自测
 
 ## 站点怎么拿数据
 
-服务器每 10 分钟 `git pull`，把 `site/` 和 `blueprints/*` 组装进
-`/www/wwwroot/msch.iliary.life/`，由 **https://msch.iliary.life/** 直接当静态文件发出去。
-访客不访问 GitHub，所以国内网络也不受影响。
+页面本身是静态的（`site/` 部署到 `/www/wwwroot/msch.iliary.life/`），**清单和蓝图由访客浏览器直连仓库取**，按顺序尝试三条源，用第一条成功的：
+
+1. `https://raw.githubusercontent.com/EnernalIliary/Ili-Mindustry-schem/main/`（内容最新）
+2. `https://cdn.jsdelivr.net/gh/EnernalIliary/Ili-Mindustry-schem@main/`（国内更通，但分支缓存最长 12 小时）
+3. 本站镜像（服务器每 10 分钟 `git pull` 一份，前两条都不通时的兜底）
+
+页脚会显示这次实际用的是哪条（`数据源：GitHub 直连 / jsDelivr / 本站镜像`）。
+服务器只负责托管页面、以及在 GitHub 通的时候做镜像；就算服务器拉不动 GitHub，访客仍能直接从仓库看到最新内容。

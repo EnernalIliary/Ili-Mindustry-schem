@@ -1,0 +1,11 @@
+{
+  "name": "着陆调度-最低库存",
+  "author": "Iliary",
+  "description": "[lightgray]6 个着陆板都请求核心库存 [#ffb6c1]最少[] 的资源。[]\n[lightgray]优先读链接 [#ffb6c1]core1[];没这个链接就 [#ffb6c1]ubind @flare[] + [#ffb6c1]ulocate[] 找核心(需要规则允许单位控制、且场上有该单位)。[]\n[lightgray]只在资源变化时才写 config,不刷方块。[]\n[lightgray]逻辑 by [#8abcd1]DeepSeek[]",
+  "tags": [
+    "中型",
+    "逻辑96行"
+  ],
+  "created": "2026-10-18",
+  "updated": "2026-10-18"
+}

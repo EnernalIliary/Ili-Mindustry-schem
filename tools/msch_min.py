@@ -259,6 +259,21 @@ def parse_base64(text: str) -> dict:
     return parse_bytes(data)
 
 
+def parse_base64_lenient(text: str) -> dict:
+    """Same as parse_base64, but byte[] configs that are not zlib logic are ignored.
+
+    Some schematics (older mods, other tools) store a byte[] config that is not a
+    logic program. The blocks are still valid, so keep the blueprint and drop the
+    logic text instead of rejecting the file.
+    """
+    original = decode_logic
+    globals()["decode_logic"] = lambda blob: {"version": 0, "lines": [], "links": []}
+    try:
+        return parse_base64(text)
+    finally:
+        globals()["decode_logic"] = original
+
+
 # --------------------------------------------------------------------------
 # writer -- used by tools/make_sample.py and the round-trip test
 # --------------------------------------------------------------------------

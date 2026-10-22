@@ -71,7 +71,9 @@ def load_blueprint(folder: Path) -> tuple[str, dict]:
     try:
         sch = msch_min.parse_base64(text)
     except msch_min.MschError as exc:
-        raise Problem(f"blueprint.txt does not decode: {exc}") from exc
+        if "logic payload" not in str(exc):
+            raise Problem(f"blueprint.txt does not decode: {exc}") from exc
+        sch = msch_min.parse_base64_lenient(text)
     if sch["width"] <= 0 or sch["height"] <= 0:
         raise Problem(f"blueprint has invalid size {sch['width']}x{sch['height']}")
     if not sch["tiles"]:
@@ -133,6 +135,9 @@ def collect(folder: Path) -> dict:
         "updated": str(meta.get("updated") or meta.get("created") or ""),
         "file": f"data/{slug}/blueprint.txt",
         "preview": f"data/{slug}/preview.png" if has_preview else None,
+        # 仓库内的原始路径：浏览器直连 GitHub 取文件时用这套（站点镜像路径是 data/…）。
+        "source": f"{BLUEPRINT_DIR.name}/{slug}/blueprint.txt",
+        "source_preview": f"{BLUEPRINT_DIR.name}/{slug}/preview.png" if has_preview else None,
     }
 
 

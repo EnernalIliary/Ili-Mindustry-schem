@@ -1,0 +1,14 @@
+{
+  "name": "单驱出入沙地布超16布",
+  "author": "Iliary",
+  "description": "单驱出入沙地布超16布\n\n小超传递布，若有大超覆盖质驱则自动关闭，不建议拆除。\n\n建议整合到单质驱入。\n\nSingle Mass Driver In/Out ODD 16-Phase Sand\n\nSmall overdrive projectors relay overdrive coverage across the phase conveyors.\nIf a overdrive dome covers the Mass Driver, the overdrive projector will automatically disable.\nRemoving it is not recommended.\n\nRecommended for integration with a single Mass Driver input setup.\n\nby - [blue]Ili[#8abcd1]ary[#654321]艾铭[#6335F8][white] & Chips\n\n2026/5/31",
+  "tags": [
+    "物流",
+    "电力",
+    "开采",
+    "大型",
+    "逻辑12行"
+  ],
+  "created": "2026-10-18",
+  "updated": "2026-10-18"
+}

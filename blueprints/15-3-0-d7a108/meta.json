@@ -1,0 +1,14 @@
+{
+  "name": "布桥15着3.0",
+  "author": "Iliary",
+  "description": "[highlight]布桥15着\n[gold]3.0\n[white]\n或称贴核15接收台\n[lightgray]\n总运力300，布桥完美均压。 \n四布桥运输，叠二布桥回核。\n调整叠二布桥可直接贴核。\n\n-序切着陆控制\n需要至少一只flare探测核心。\n序切逻辑会在因发射量不足卡着陆时按核心物品数量倒序调整着陆物品。在战役中可跑满发射量。\n将逻辑链接到信息板查看序切情况。\n默认不选择发射沙废煤孢。\n\n[highlight]Phase-Bridge 15 Landing Pads\n[gold]3.0\n[white]\n\nAlso known as the Core-Adjacent 15-Pad Receiver.\n\n[lightgray]\nunable to stack.\nTotal throughput: 300.\nPhase bridges provide perfectly balanced distribution.\n\nFour phase bridges handle transport, while stacked dual phase bridges return items to the core.\n\nBy adjusting the stacked dual phase bridges, the design can be placed directly adjacent to the core.\n\n* Sequential Landing Control\n\nRequires at least one Flare to detect the core.\n\nWhen landing pads become bottlenecked due to insufficient launch throughput, the sequential-switching logic dynamically adjusts the received item type according to core inventory, prioritizing the least-stocked resources first.\nIn Campaign, this allows launch throughput to remain fully utilized.\n\nLink the logic to a message block to monitor switching status.\n\nSand, scrap, coal, and spores are excluded from launch selection by default.\n\nby - [blue]Ili[#8abcd1]ary[#654321]艾铭[#6335F8]",
+  "tags": [
+    "物流",
+    "电力",
+    "液体",
+    "大型",
+    "逻辑196行"
+  ],
+  "created": "2026-10-21",
+  "updated": "2026-10-21"
+}

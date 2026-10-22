@@ -1,0 +1,15 @@
+{
+  "name": "ILI爆贴核八冲",
+  "author": "Iliary",
+  "description": "ILI爆贴核八冲\n\n富一冷，抗低帧。此结构可以到十冲，但是无法富一冷。\n\n所有逻辑均可去除：\n系起冲和减少桥带缓存与分类器资源预警与停冲分析逻辑。\n\n分类器指示对照：\n - 停冲原因\n - 预警\n - 安全\n - 水资源 低于45%水位\n - 钛资源 核心1k以内\n - 爆资源 核心800以内\n - 电力低 电力盈余不足20k\n - 帧率低 装卸运力过低\n\n停冲后展示上次预警信息\n正常运行时展示30秒前的预警信息\n门是蜂鸣器:)\n\nILI Blast-Core Adjacent Eight-Impact\n\nCryo-positive by one mixer, low-FPS resistant.\nThis structure can be expanded to ten Impacts, but it will no longer remain cryo-positive.\n\nAll logic modules are removable:\n\n* Impact startup logic\n* Bridge-buffer reduction logic\n* Sorter-based warning and shutdown analysis logic\n\nSorter indicator reference:\n - Shutdown reason\n - Warning\n - Safe\n - Low water resources (below 45% water level)\n - Low titanium resources (within 1k in core)\n - Low blast compound resources (within 800 in core)\n - Low power (less than 20k power surplus)\n - Low FPS / insufficient unload throughput\n\nAfter shutdown, the last warning message is displayed.\nDuring normal operation, warnings from 30 seconds ago are displayed.\n\nThe door is the buzzer :)\n\nby - [blue]Ili[#8abcd1]ary[#654321]艾铭[#6335F8]",
+  "tags": [
+    "物流",
+    "电力",
+    "液体",
+    "生产",
+    "大型",
+    "逻辑147行"
+  ],
+  "created": "2026-10-18",
+  "updated": "2026-10-18"
+}

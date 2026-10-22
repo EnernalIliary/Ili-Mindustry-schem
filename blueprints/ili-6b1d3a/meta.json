@@ -1,0 +1,12 @@
+{
+  "name": "ILI反病毒",
+  "author": "Iliary",
+  "description": "[blue]I[#8abcd1]L[#654321]I[highlight]测测Build反病毒[white]\n\n[gray]替换掉试图控制单位建造1*1建筑的逻辑\n由于Poly会自动重建，所以在Poly杀毒完成后会被此逻辑强制控制，开关用于解控\n\nAnti-Virus-logic Logic\n\nReplaces logic that attempts to control units into building 1×1 structures.\n\nSince Poly units automatically rebuild virious, they will be forcibly controlled by this logic after the cleanup is complete.\n\nThe switch can be used to release control.",
+  "tags": [
+    "逻辑",
+    "小型",
+    "逻辑69行"
+  ],
+  "created": "2026-10-18",
+  "updated": "2026-10-18"
+}

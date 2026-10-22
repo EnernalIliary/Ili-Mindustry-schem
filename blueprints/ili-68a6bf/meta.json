@@ -1,0 +1,17 @@
+{
+  "name": "ILI加速器填充",
+  "author": "Iliary",
+  "description": "-*-[blue]I[#8abcd1]L[#654321]I[highlight][highlight]加速器填充-*-\n[white]\n桥带供超速和冷厂。\n\n请注意：直接复制蓝图使用会阻塞带桥，\n去Iliary.life/MDT网站复制正确蓝图。\n\n打开开关开始填充加速器、填充时关闭开关可以停止填充。\n\n物品在核心的存量少于1000时不导出。\n\n自动禁用加速器以查看资源情况，当物品数量达到12500时停用布桥运输，使用空装卸填满加速器。\n\n-*- [blue]I[#8abcd1]L[#654321]I[highlight][highlight] Accelerator Filler -*-\n\n[white]\n\nBridge conveyors supply the overdrive projectors and cryofluid mixers.\n\nNote: Directly copying and using the schematic will block the bridge conveyors.\nPlease visit Iliary.life/MDT to copy the correct schematic.\n\nTurn on the switch to begin filling the accelerators.\nTurning the switch off during filling will stop the process.\n\nItems will not be exported when the core storage amount is below 1000.\n\nThe accelerators are automatically disabled to check resource status.\nWhen the item count reaches 12500, bridge transport is stopped and empty unloaders are used to fully fill the accelerators.",
+  "tags": [
+    "物流",
+    "电力",
+    "液体",
+    "开采",
+    "生产",
+    "核心",
+    "大型",
+    "逻辑105行"
+  ],
+  "created": "2026-10-18",
+  "updated": "2026-10-18"
+}

@@ -1,0 +1,15 @@
+{
+  "name": "ILI双poly搬运八硫温差",
+  "author": "Iliary",
+  "description": "ILI双poly搬运八硫温差\n无flag双控搬运逻辑，最远离核90格\n搬运逻辑算法消灭了单位的停顿时间，并且优先供给物品最少的建筑，基本上完全利用了单位的运力。\n尚不支持超速。\n\nILI Dual-Poly Transport 8-Sulfur Differential Generator\n\nFlagless dual-control transport logic.\nMaximum operating distance: 90 tiles from the core.\n\nThe transport algorithm eliminates unit idle time and prioritizes buildings with the lowest item count, making near-complete use of unit carrying capacity.\n\nOverdrive support is not yet implemented.\n\nBy - [#FFB6C1]鱼破了冰[gray]&[blue]Ili[#8abcd1]ary[#654321]艾铭[#6335F8]",
+  "tags": [
+    "电力",
+    "液体",
+    "开采",
+    "生产",
+    "中型",
+    "逻辑100行"
+  ],
+  "created": "2026-10-18",
+  "updated": "2026-10-18"
+}

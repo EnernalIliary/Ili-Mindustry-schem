@@ -1,0 +1,15 @@
+{
+  "name": "Landing Sept-Imptreactor",
+  "author": "Iliary",
+  "description": "-- Landing Pad Sept S --\n\nSpecial thanks to 忌鲨 for providing the basic structure.\n\nStarts accepting Titanium and Blast Compound when either drops below 100\nImpact Reactors will start during power deficit once total current + predicted stored power reaches 30000\nMinimum absolutely stable FPS: 20 — bridge-free chained design with improved low-FPS resistance\nLogic includes anti-mixing, pad control, item distribution, and reactor startup control\n\nby - Iliary 艾铭",
+  "tags": [
+    "物流",
+    "电力",
+    "液体",
+    "生产",
+    "大型",
+    "逻辑72行"
+  ],
+  "created": "2026-05-17",
+  "updated": "2026-05-17"
+}

@@ -1,0 +1,18 @@
+{
+  "name": "落地逻辑温冲双T3",
+  "author": "Iliary",
+  "description": "-*-[#ffb6c1]落地逻辑温冲双T3[]-*-\n\n[lightgray]温差放硫速启[]，否则只能等太阳能。\n[lightgray]电池必留[]，蓝图无冗余建筑。\n\n[lightgray]冲反爆炸[]不伤核心。\n[lightgray]按电网[]动态起停冲。\n\n[lightgray]旁为自动重构[]，仅拉30格内单位，要拆只拆它。\n你可以对mono厂使用\"进入载荷\"命令来阻止它跑出范围。\n\n[lightgray]转厂直出[highlight]T2[lightgray]，出电[highlight]13.5k[lightgray]。\n\n[white]By - [blue]Ili[#8abcd1]ary[#654321]艾铭[#6335F8]ò",
+  "tags": [
+    "物流",
+    "电力",
+    "液体",
+    "开采",
+    "生产",
+    "单位",
+    "核心",
+    "中型",
+    "逻辑178行"
+  ],
+  "created": "2026-10-18",
+  "updated": "2026-10-18"
+}

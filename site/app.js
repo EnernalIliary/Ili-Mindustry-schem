@@ -3,7 +3,15 @@
   "use strict";
 
   const el = (id) => document.getElementById(id);
-  const state = { data: null, tag: null, query: "" };
+  const state = { data: null, tag: null, query: "", base: "", source: "" };
+
+  // 数据优先由访客浏览器直连仓库取（服务器到 GitHub 不稳），失败再逐级退到 CDN、最后用本站镜像。
+  const REPO_PAGE = "https://github.com/EnernalIliary/Ili-Mindustry-schem";
+  const SOURCES = [
+    { label: "GitHub 直连", base: "https://raw.githubusercontent.com/EnernalIliary/Ili-Mindustry-schem/main/" },
+    { label: "jsDelivr", base: "https://cdn.jsdelivr.net/gh/EnernalIliary/Ili-Mindustry-schem@main/" },
+    { label: "本站镜像", base: "" },
+  ];
 
   const $grid = el("grid");
   const $tags = el("tags");
@@ -34,6 +42,12 @@
       img.loading = "lazy";
       img.alt = `${bp.name} 预览`;
       img.src = bp.preview;
+      // 镜像里还没同步到这张图时，退回仓库原图
+      img.onerror = () => {
+        const remote = (bp.source_preview && state.base) ? state.base + bp.source_preview : null;
+        if (remote && img.src !== remote) img.src = remote;
+        else img.onerror = null;
+      };
       thumb.append(img);
     } else {
       const ph = document.createElement("div");
@@ -134,7 +148,7 @@
   }
 
   async function showDetail(bp) {
-    const repo = state.data.repo;
+    const repo = state.data.repo || REPO_PAGE;
 
     el("m-title").textContent = bp.name;
     el("m-desc").textContent = bp.description;
@@ -196,9 +210,7 @@
       hint.textContent = "读取中…";
       hint.className = "hint";
       try {
-        const res = await fetch(bp.file, { cache: "no-cache" });
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        const text = (await res.text()).trim();
+        const text = await fetchBlueprint(bp);
         await copyText(text);
         hint.textContent = "已复制。回游戏里按 Ctrl+V 就能粘出这张蓝图。";
         hint.className = "hint ok";
@@ -256,19 +268,57 @@
     });
   }
 
+  async function fetchText(url, ms = 8000) {
+    const ctrl = new AbortController();
+    const timer = setTimeout(() => ctrl.abort(), ms);
+    try {
+      const res = await fetch(url, { cache: "no-cache", signal: ctrl.signal });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      return await res.text();
+    } finally {
+      clearTimeout(timer);
+    }
+  }
+
+  function fetchBlueprint(bp) {
+    // index.json 里的 file 是站点镜像路径（data/…），source 是仓库内路径（blueprints/…）
+    const remotePath = bp.source || (bp.file.startsWith("data/") ? `blueprints/${bp.file.slice(5)}` : bp.file);
+    const attempts = state.base ? [[state.base, remotePath], ["", bp.file]] : [["", bp.file]];
+    let lastErr = null;
+    return (async () => {
+      for (const [base, path] of attempts) {
+        try {
+          return (await fetchText(base + path)).trim();
+        } catch (err) {
+          lastErr = err;
+        }
+      }
+      throw lastErr || new Error("取不到文件");
+    })();
+  }
+
   async function boot() {
     bindEvents();
-    try {
-      const res = await fetch("index.json", { cache: "no-cache" });
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      state.data = await res.json();
-    } catch (err) {
-      $meta.textContent = `读取 index.json 失败：${err.message}`;
+    let lastErr = null;
+    for (const src of SOURCES) {
+      try {
+        state.data = JSON.parse(await fetchText(src.base + "index.json"));
+        state.base = src.base;
+        state.source = src.label;
+        break;
+      } catch (err) {
+        lastErr = err;
+      }
+    }
+    if (!state.data) {
+      $meta.textContent = `读取 index.json 失败：${(lastErr && lastErr.message) || "网络不可用"}`;
       return;
     }
     if (state.data.generated_at) {
       const d = new Date(state.data.generated_at);
-      $stamp.textContent = `清单更新于 ${d.toLocaleString("zh-CN", { hour12: false })}`;
+      $stamp.textContent = `清单更新于 ${d.toLocaleString("zh-CN", { hour12: false })} · 数据源：${state.source}`;
+    } else {
+      $stamp.textContent = `数据源：${state.source}`;
     }
     renderTags();
     renderGrid();

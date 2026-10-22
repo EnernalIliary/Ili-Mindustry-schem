@@ -1,0 +1,14 @@
+{
+  "name": "Sacrifice神风逻辑",
+  "author": "Iliary",
+  "description": "Sacrifice神风逻辑\n\n继承简化了距离-平移神风逻辑的内容、单位残血时会冲向炮台。\n\n你当前选择的是::null::flare:SuicideH:0.5\n[gray]更改反分选择单位、更改正分选择单位携带物品,进入电弧开始神风控制，此时改动上述设置无效\n[white]by-[blue]Ili[#8abcd1]ary[#654321]艾铭[#6335F8]",
+  "tags": [
+    "逻辑",
+    "炮台",
+    "物流",
+    "小型",
+    "逻辑79行"
+  ],
+  "created": "2026-10-18",
+  "updated": "2026-10-18"
+}

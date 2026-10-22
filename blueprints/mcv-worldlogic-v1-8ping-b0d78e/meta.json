@@ -1,0 +1,11 @@
+{
+  "name": "MCV Worldlogic v1.8ping",
+  "author": "Iliary",
+  "description": "Ready to pack up your core?\n\nMCV (Mobile Core Vehicle)\nWorld Processor Development Build v1.8\n\nUse `Pinglocation` on a core to pack it into an MCV. Control or command the MCV to attack in order to deploy it back into a core.\n\nUses `cangameover` to prevent the game from ending when the last core is packed up. Memory cells are used to store the items contained inside the MCV core. Supports multiple teams.\n\nThe tile directly beneath the core is used as a unit buffer.\nThe tile directly below the logic processor will be cleared while the logic is running.\n\nv1.5 added precise deployment offset control. While controlling the MCV, moving the cursor close to the MCV allows fine adjustment of the deployment position.\n\nv1.8 now uses `pinglocation` for packing the MCV, improving synchronization performance on multiplayer servers.",
+  "tags": [
+    "小型",
+    "逻辑268行"
+  ],
+  "created": "2026-05-12",
+  "updated": "2026-05-12"
+}

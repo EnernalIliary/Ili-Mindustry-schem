@@ -1,0 +1,12 @@
+{
+  "name": "无线网络空白从机服务器",
+  "author": "Iliary",
+  "description": "无线网络的空白从机服务器，你可以在代码中看到#sendfountion和#recievefountion，那里有介绍，要让接收端收到消息，需要发射端代码开头\n的aimadress变量手动set为接收端地址。",
+  "tags": [
+    "物流",
+    "小型",
+    "逻辑161行"
+  ],
+  "created": "2026-10-18",
+  "updated": "2026-10-18"
+}

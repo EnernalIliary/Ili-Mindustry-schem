@@ -1,0 +1,11 @@
+{
+  "name": "MCV逻辑开发版v2.0",
+  "author": "Iliary",
+  "description": "MCV(移动核心,Mobile Core Vericle)\n世界处理器开发版v2.0\n\n对核心长按就可收起核心为MCV，控制或指挥MCV攻击即可再次展开为核心。\n\n通过cangameover控制不会因为最后一个核心收起导致没有核心而GG。内存用于存储MCV核心内的物品。支持多队伍。\n[yellow]逻辑右侧两格是单位缓冲区，[red]运行时会清空逻辑右侧的方块。\n[lightgray]\nv1.5更新了坐标精确偏移，控制MCV将鼠标抵近MCV可以进行展开位置偏移。\n\nv1.8使用pinglocation收起MCV，优化了服务器的同步效果。\n\nv1.9允许暂存mod物品",
+  "tags": [
+    "小型",
+    "逻辑337行"
+  ],
+  "created": "2026-10-18",
+  "updated": "2026-10-18"
+}

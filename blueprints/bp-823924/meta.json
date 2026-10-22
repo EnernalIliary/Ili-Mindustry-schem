@@ -1,0 +1,13 @@
+{
+  "name": "着陆37硫涡轮",
+  "author": "Iliary",
+  "description": "着陆37硫涡轮\n\n\n在帧率和抠门之间做了取舍。\n要不要这么抠门？？\n\n你需要有足够的游戏理解才能明白为什么要这么走传送带。\n\n 桥带缓存方便跑满着陆。\n\n结构简单，无署名\n\nLanding Pad 37-Sulfur Turbine\n\nA compromise between FPS and being absurdly cheap.\nDid you really have to save that much?\n\nYou’ll need enough game knowledge to understand why the conveyors are routed like this.\n\nBridge conveyor buffering helps fully saturate the landing pads.\n\nSimple structure. No signature.",
+  "tags": [
+    "物流",
+    "电力",
+    "液体",
+    "大型"
+  ],
+  "created": "2026-05-27",
+  "updated": "2026-05-27"
+}

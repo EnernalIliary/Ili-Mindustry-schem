@@ -17,7 +17,7 @@
     } catch (e) { document.documentElement.dataset.theme = "light"; }
   })();
 </script>
-<link rel="stylesheet" href="style.css?v=20261023a">
+<link rel="stylesheet" href="style.css?v=20261023b">
 </head>
 <body>
 <div class="decor" aria-hidden="true"><i class="blob b1"></i><i class="blob b2"></i><i class="blob b3"></i></div>
@@ -94,6 +94,10 @@
     <p id="m-desc" class="m-desc"></p>
     <dl id="m-stats" class="stats"></dl>
     <div id="m-tags" class="tags small"></div>
+    <div id="m-req" class="req" hidden>
+      <h3>材料清单</h3>
+      <ul class="req-list"></ul>
+    </div>
     <div class="actions">
       <button id="m-copy" class="btn primary" type="button">复制蓝图</button>
       <a id="m-download" class="btn" download>下载文本</a>
@@ -103,6 +107,6 @@
   </div>
 </div>
 
-<script src="app.js?v=20261023a"></script>
+<script src="app.js?v=20261023b"></script>
 </body>
 </html>

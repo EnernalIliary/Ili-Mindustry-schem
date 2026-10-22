@@ -25,10 +25,12 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 import category_tags  # noqa: E402
 import msch_min  # noqa: E402
+import schem_labels  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 BLUEPRINT_DIR = ROOT / "blueprints"
 INDEX_PATH = ROOT / "index.json"
+EXTRA_PATH = ROOT / "tools" / "data" / "blueprint_extra.json"
 
 SLUG_RE = re.compile(r"^[a-z0-9][a-z0-9-]{1,63}$")
 REQUIRED_FIELDS = ("name", "author", "description")
@@ -91,6 +93,17 @@ def repo_url() -> str:
     return f"https://github.com/{slug}" if "/" in slug else ""
 
 
+def load_extra() -> dict:
+    """渲染器顺带产出的材料清单与电力收支（可选，按 slug 索引）。"""
+    if not EXTRA_PATH.is_file():
+        return {}
+    try:
+        data = json.loads(EXTRA_PATH.read_text(encoding="utf-8"))
+    except json.JSONDecodeError:
+        return {}
+    return data if isinstance(data, dict) else {}
+
+
 def block_summary(sch: dict) -> list[dict]:
     counts: dict[str, int] = {}
     for tile in sch["tiles"]:
@@ -99,7 +112,7 @@ def block_summary(sch: dict) -> list[dict]:
     return [{"block": name, "count": n} for name, n in ordered[:8]]
 
 
-def collect(folder: Path) -> dict:
+def collect(folder: Path, extra: dict | None = None) -> dict:
     slug = folder.name
     if not SLUG_RE.match(slug):
         raise Problem("folder name must be lowercase letters, digits and dashes")
@@ -121,14 +134,21 @@ def collect(folder: Path) -> dict:
         # 全是模组方块、游戏内分类表里查不到的蓝图，归到「其他」，页面上不至于没有标签。
         tags, category = ["其他"], "other"
 
+    # 游戏内自己打的标签（蓝图文件 tags['labels']），这才是「按游戏来」的那套。
+    game_labels = schem_labels.parse_labels((sch.get("tags") or {}).get("labels", ""))
+    info = (extra or {}).get(slug) or {}
+
     return {
         "slug": slug,
         "name": name,
         "author": str(meta["author"]).strip(),
         "description": description,
+        "labels": game_labels,
         "tags": tags,
         "category": category,
         "category_label": labels.get(category, ""),
+        "requirements": info.get("requirements") or [],
+        "power_balance": info.get("power_balance"),
         "game_version": str(meta.get("game_version", "")).strip(),
         "width": sch["width"],
         "height": sch["height"],
@@ -160,12 +180,13 @@ def main() -> int:
 
     entries: list[dict] = []
     problems: list[str] = []
+    extra = load_extra()
 
     for folder in sorted(BLUEPRINT_DIR.iterdir()):
         if not folder.is_dir() or folder.name.startswith("."):
             continue
         try:
-            entries.append(collect(folder))
+            entries.append(collect(folder, extra))
         except Problem as exc:
             problems.append(f"{folder.name}: {exc}")
         except msch_min.MschError as exc:
@@ -186,9 +207,12 @@ def main() -> int:
     entries.sort(key=lambda e: (e["created"] or "", e["name"]), reverse=True)
 
     category_counts: dict[str, int] = {}
+    label_counts: dict[str, int] = {}
     for entry in entries:
         for label in entry["tags"]:
             category_counts[label] = category_counts.get(label, 0) + 1
+        for label in entry["labels"]:
+            label_counts[label] = label_counts.get(label, 0) + 1
 
     tags = category_counts  # kept under both names: the page reads "categories"
     _, labels = category_tags._tables()
@@ -198,6 +222,10 @@ def main() -> int:
         "generated_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
         "repo": repo_url(),
         "count": len(entries),
+        "labels": [
+            {"name": name, "count": count}
+            for name, count in sorted(label_counts.items(), key=lambda kv: (-kv[1], kv[0]))
+        ],
         "tags": [{"name": k, "count": v} for k, v in sorted(tags.items(), key=lambda kv: (-kv[1], kv[0]))],
         "categories": [
             {"key": key_by_label.get(name, name), "name": name, "count": count}

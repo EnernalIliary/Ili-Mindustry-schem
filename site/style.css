@@ -573,6 +573,38 @@ input[type="search"]:focus {
 .tags.small .chip { cursor: default; font-size: .78rem; padding: .16rem .58rem; }
 .tags.small .chip:hover { transform: none; }
 
+/* 材料清单 */
+.req { margin: .2rem 0 1rem; }
+.req h3 {
+  margin: 0 0 .5rem;
+  font-size: .78rem;
+  font-weight: 600;
+  letter-spacing: .04em;
+  color: var(--muted);
+  text-transform: uppercase;
+}
+.req-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .4rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.req-list li {
+  display: inline-flex;
+  align-items: baseline;
+  gap: .4rem;
+  padding: .3rem .6rem;
+  font-size: .84rem;
+  background: var(--panel-2);
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  transition: transform .22s var(--ease), border-color .22s var(--ease);
+}
+.req-list li:hover { transform: translateY(-2px); border-color: color-mix(in srgb, var(--accent) 45%, var(--line)); }
+.req-list .amt { font-variant-numeric: tabular-nums; color: var(--accent); font-weight: 600; }
+
 .actions { display: flex; flex-wrap: wrap; gap: .55rem; margin-top: 1.15rem; }
 
 .btn {

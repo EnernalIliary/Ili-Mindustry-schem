@@ -10,6 +10,15 @@
   ];
   const REPO_PAGE = "https://github.com/EnernalIliary/Ili-Mindustry-schem";
 
+  // 材料英文 id → 中文名（游戏内叫法，缺的回落成 id）
+  const ITEM_ZH = {
+    copper: "铜", lead: "铅", metaglass: "玻璃", graphite: "石墨", sand: "沙",
+    coal: "煤", titanium: "钛", thorium: "钍", scrap: "废料", silicon: "硅",
+    plastanium: "塑钢", "phase-fabric": "相织布", "surge-alloy": "浪涌合金",
+    "spore-pod": "孢子荚", "blast-compound": "爆炸混合物", pyratite: "硫磺炸药",
+    beryllium: "铍", tungsten: "钨", oxide: "氧化铍", carbide: "碳化物",
+    "fissile-matter": "裂变物质", "dormant-cyst": "休眠孢囊",
+  };
   const $ = (id) => document.getElementById(id);
   const els = {
     header: $("header"),
@@ -29,6 +38,7 @@
     mDesc: $("m-desc"),
     mStats: $("m-stats"),
     mTags: $("m-tags"),
+    mReq: $("m-req"),
     mCopy: $("m-copy"),
     mDownload: $("m-download"),
     mSource: $("m-source"),
@@ -114,11 +124,12 @@
   }
 
   function matches(bp) {
-    if (state.cat && !(bp.tags || []).includes(state.cat)) return false;
+    const labels = bp.labels || [];
+    if (state.cat && !labels.includes(state.cat)) return false;
     if (!inLogicRange(bp.logic_lines || 0)) return false;
     const q = state.query.trim().toLowerCase();
     if (!q) return true;
-    const hay = [bp.name, bp.description, (bp.tags || []).join(" "), bp.slug].join(" ").toLowerCase();
+    const hay = [bp.name, bp.description, labels.join(" "), bp.slug].join(" ").toLowerCase();
     return q.split(/\s+/).every((word) => hay.includes(word));
   }
 
@@ -133,7 +144,7 @@
       ? `<img src="${previewSrc(bp)}" alt="${escapeHtml(bp.name)} 预览" loading="lazy" decoding="async"
               data-fallback="${bp.preview || ""}">`
       : `<span class="ph">无预览</span>`;
-    const pills = (bp.tags || []).map((t) => `<span class="pill cat">${escapeHtml(t)}</span>`).join("");
+    const pills = (bp.labels || []).slice(0, 3).map((t) => `<span class="pill cat">${escapeHtml(t)}</span>`).join("");
     const logic = bp.logic_lines > 0
       ? `<span class="pill logic">逻辑 ${fmtNum(bp.logic_lines)} 行</span>`
       : "";
@@ -177,7 +188,9 @@
   }
 
   function renderTags() {
-    const cats = state.data.categories || [];
+    // 游戏内自己打的标签（蓝图文件里的 labels），按出现次数排序
+    const all = state.data.labels || [];
+    const shown = all.slice(0, 24);
     const chip = (label, count, active, value) => `
       <button class="chip" type="button" aria-pressed="${active}" data-cat="${escapeHtml(value || "")}">
         ${escapeHtml(label)}<span class="n">${fmtNum(count)}</span>
@@ -185,8 +198,8 @@
 
     els.tags.innerHTML =
       chip("全部", state.data.count, state.cat === null, "") +
-      cats.map((c) => chip(c.name, c.count, state.cat === c.name, c.name)).join("");
-    els.statTags.textContent = fmtNum(cats.length);
+      shown.map((c) => chip(c.name, c.count, state.cat === c.name, c.name)).join("");
+    els.statTags.textContent = fmtNum(all.length);
   }
 
   function renderStats() {
@@ -253,15 +266,30 @@
       ? `<img src="${previewSrc(bp)}" alt="${escapeHtml(bp.name)} 预览">`
       : `<div class="ph">这张蓝图没有预览图</div>`;
 
+    const power = typeof bp.power_balance === "number" ? bp.power_balance : null;
     els.mStats.innerHTML = [
       statRow("尺寸", `${bp.width} × ${bp.height}`),
       statRow("方块", fmtNum(bp.tiles)),
       statRow("逻辑", bp.logic_lines > 0 ? `${fmtNum(bp.logic_lines)} 行 / ${fmtNum(bp.logic_blocks)} 块` : "无"),
-      statRow("字符", fmtNum(bp.chars)),
+      statRow("电力", power === null ? "—" : `${power > 0 ? "+" : ""}${fmtNum(power)}`),
       statRow("导入于", bp.created || "—"),
     ].join("");
 
-    els.mTags.innerHTML = (bp.tags || []).map((t) => `<span class="chip">${escapeHtml(t)}</span>`).join("");
+    const labels = bp.labels || [];
+    els.mTags.innerHTML = labels.map((t) => `<span class="chip">${escapeHtml(t)}</span>`).join("");
+
+    const req = (bp.requirements || []).filter((r) => r && r.item);
+    if (req.length) {
+      const total = req.reduce((sum, r) => sum + (r.amount || 0), 0);
+      els.mReq.hidden = false;
+      els.mReq.querySelector("ul").innerHTML = req
+        .map((r) => `<li><span class="item">${escapeHtml(ITEM_ZH[r.item] || r.item)}</span>
+          <span class="amt">${fmtNum(r.amount)}</span></li>`)
+        .join("");
+      els.mReq.querySelector("h3").textContent = `材料清单 · 共 ${fmtNum(total)}`;
+    } else {
+      els.mReq.hidden = true;
+    }
 
     els.mSource.href = `${REPO_PAGE}/blob/main/blueprints/${bp.slug}/blueprint.txt`;
     els.mHint.textContent = "";

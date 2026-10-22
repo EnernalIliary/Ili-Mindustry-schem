@@ -73,5 +73,5 @@ python3 tools/msch_min.py              # 编解码器自测
 ## 站点怎么拿数据
 
 服务器每 10 分钟 `git pull`，把 `site/` 和 `blueprints/*` 组装进
-`/www/wwwroot/Iliary.life/blueprints/`，nginx 直接当静态文件发出去。
+`/www/wwwroot/msch.iliary.life/`，由 **https://msch.iliary.life/** 直接当静态文件发出去。
 访客不访问 GitHub，所以国内网络也不受影响。

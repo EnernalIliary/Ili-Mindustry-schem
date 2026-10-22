@@ -28,6 +28,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 import build_index  # noqa: E402
+import category_tags  # noqa: E402
 import msch_min  # noqa: E402
 import preview as preview_mod  # noqa: E402
 
@@ -36,22 +37,13 @@ BLUEPRINT_DIR = ROOT / "blueprints"
 SIZES_PATH = Path(__file__).resolve().parent / "data" / "block_sizes.json"
 
 # content tags -------------------------------------------------------------
-TAG_RULES = [
-    ("逻辑", ("logic-",)),
-    ("炮台", ("duo", "scatter", "scorch", "hail", "wave", "lancer", "arc", "cyclone",
-              "fuse", "ripple", "meltdown", "salvo", "segment", "tsunami", "foreshadow",
-              "spectre", "swarmer", "parallax", "breach", "diffuse", "sublimate", "titan",
-              "disperse", "afflict", "lustre", "scathe", "smite", "malign")),
-    ("物流", ("conveyor", "junction", "router", "sorter", "duct", "unloader", "mass-driver")),
-    ("电力", ("solar", "battery", "reactor", "generator", "combustion", "thermal",
-              "differential", "power-", "beam-node", "beam-tower", "beam-link", "diode")),
-    ("液体", ("conduit", "tank", "pump", "valve", "liquid", "cryofluid")),
-    ("开采", ("drill", "bore", "cultivator", "extractor")),
-    ("生产", ("smelter", "kiln", "press", "mixer", "compressor", "incinerator", "separator",
-              "disassembler", "pulverizer", "centrifuge", "melter")),
-    ("单位", ("reconstructor", "factory", "assembler", "refabricator", "ship", "mech", "tank")),
-    ("核心", ("core-",)),
-]
+# 标签一律用游戏内的建筑分类（炮塔/生产/运输/流体/电力/防御/制造/单位/功能），
+# 由 blueprint 里实际放置的方块决定，见 tools/category_tags.py。
+
+
+def content_tags(sch: dict) -> list[str]:
+    tags, _ = category_tags.blueprint_tags(sch)
+    return tags
 
 SLUG_KEEP = set("abcdefghijklmnopqrstuvwxyz0123456789")
 
@@ -111,17 +103,6 @@ def _lenient_parse(parse) -> dict:
         return parse()
     finally:
         msch_min.decode_logic = original
-
-
-def content_tags(sch: dict) -> list[str]:
-    blocks = {t["block"].lower() for t in sch["tiles"]}
-    tags = [label for label, needles in TAG_RULES if any(n in b for b in blocks for n in needles)]
-    span = max(int(sch["width"]), int(sch["height"]))
-    tags.append("小型" if span <= 8 else "中型" if span <= 16 else "大型")
-    if sch["logic"]:
-        lines = sum(len(entry["lines"]) for entry in sch["logic"])
-        tags.append(f"逻辑{lines}行" if lines else "逻辑")
-    return tags
 
 
 def clean_name(stem: str) -> str:

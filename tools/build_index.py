@@ -23,6 +23,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
+import category_tags  # noqa: E402
 import msch_min  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -114,13 +115,17 @@ def collect(folder: Path) -> dict:
     logic = sch["logic"]
     name = str(meta["name"]).strip()
     description = str(meta["description"]).strip()
+    tags, category = category_tags.blueprint_tags(sch)
+    _, labels = category_tags._tables()
 
     return {
         "slug": slug,
         "name": name,
         "author": str(meta["author"]).strip(),
         "description": description,
-        "tags": [t.strip() for t in meta.get("tags", []) if t.strip()],
+        "tags": tags,
+        "category": category,
+        "category_label": labels.get(category, ""),
         "game_version": str(meta.get("game_version", "")).strip(),
         "width": sch["width"],
         "height": sch["height"],
@@ -177,16 +182,28 @@ def main() -> int:
 
     entries.sort(key=lambda e: (e["created"] or "", e["name"]), reverse=True)
 
-    tags: dict[str, int] = {}
+    category_counts: dict[str, int] = {}
     for entry in entries:
-        for tag in entry["tags"]:
-            tags[tag] = tags.get(tag, 0) + 1
+        for label in entry["tags"]:
+            category_counts[label] = category_counts.get(label, 0) + 1
+
+    tags = category_counts  # kept under both names: the page reads "categories"
+    _, labels = category_tags._tables()
+    key_by_label = {v: k for k, v in labels.items()}
 
     index = {
         "generated_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
         "repo": repo_url(),
         "count": len(entries),
         "tags": [{"name": k, "count": v} for k, v in sorted(tags.items(), key=lambda kv: (-kv[1], kv[0]))],
+        "categories": [
+            {"key": key_by_label.get(name, name), "name": name, "count": count}
+            for name, count in sorted(category_counts.items(), key=lambda kv: (-kv[1], kv[0]))
+        ],
+        "logic": {
+            "max_lines": max((e["logic_lines"] for e in entries), default=0),
+            "with_logic": sum(1 for e in entries if e["logic_lines"] > 0),
+        },
         "blueprints": entries,
     }
     payload = json.dumps(index, ensure_ascii=False, indent=2) + "\n"

@@ -1,0 +1,14 @@
+{
+  "core": "核心",
+  "crafting": "制造",
+  "defense": "防御",
+  "distribution": "运输",
+  "effect": "功能",
+  "liquid": "流体",
+  "logic": "逻辑",
+  "misc": "杂项",
+  "power": "电力",
+  "production": "生产",
+  "turret": "炮塔",
+  "units": "单位"
+}

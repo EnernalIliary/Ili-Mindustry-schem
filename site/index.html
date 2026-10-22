@@ -1,35 +1,89 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-theme="auto">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>蓝图库 · 近海小屿</title>
-<meta name="description" content="Mindustry 蓝图收藏，可直接复制到游戏里使用。">
-<link rel="stylesheet" href="style.css?v=20261022b">
+<meta name="description" content="Mindustry 蓝图收藏，按游戏内建筑分类浏览，可直接复制到游戏里使用。">
+<meta name="color-scheme" content="light dark">
+<script>
+  // 先定主题再渲染，避免闪一下白底
+  (() => {
+    try {
+      const saved = localStorage.getItem("bp-theme");
+      document.documentElement.dataset.theme =
+        (saved === "light" || saved === "dark") ? saved
+        : (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+    } catch (e) { document.documentElement.dataset.theme = "light"; }
+  })();
+</script>
+<link rel="stylesheet" href="style.css?v=20261023a">
 </head>
 <body>
-<header class="top">
-  <div class="wrap">
-    <a class="back" href="https://iliary.life" title="返回主站">← 近海小屿</a>
-    <h1>蓝图库</h1>
-    <p class="sub">Mindustry 蓝图收藏。点开任意一张，复制那串字符，回游戏里 <kbd>Ctrl</kbd>+<kbd>V</kbd> 粘贴即可。</p>
+<div class="decor" aria-hidden="true"><i class="blob b1"></i><i class="blob b2"></i><i class="blob b3"></i></div>
+
+<header class="site-header" id="header">
+  <div class="wrap header-inner">
+    <a class="brand" href="./">
+      <span class="brand-mark" aria-hidden="true">◈</span>
+      <span class="brand-text">蓝图库</span>
+    </a>
+    <nav class="nav">
+      <a href="https://iliary.life" title="返回主站">主站</a>
+      <a id="repo-link" href="https://github.com/EnernalIliary/Ili-Mindustry-schem" target="_blank" rel="noopener">仓库</a>
+      <button id="theme-toggle" class="icon-btn" type="button" aria-label="切换深浅色" title="切换深浅色">
+        <span class="ico sun" aria-hidden="true">☀</span>
+        <span class="ico moon" aria-hidden="true">☾</span>
+      </button>
+    </nav>
   </div>
 </header>
 
 <main class="wrap">
-  <div class="toolbar">
-    <input id="search" type="search" placeholder="搜索名称、描述、标签…" autocomplete="off" spellcheck="false">
-    <div id="tags" class="tags" role="group" aria-label="标签筛选"></div>
-  </div>
+  <section class="hero reveal">
+    <h1>近海小屿 · <span class="grad">蓝图库</span></h1>
+    <p class="lede">Mindustry 蓝图收藏。点开任意一张，复制那串字符，回游戏里 <kbd>Ctrl</kbd>+<kbd>V</kbd> 粘贴即可。</p>
+    <p class="notice">
+      <span class="notice-tag">说明</span>
+      这里收录的蓝图并非全部由我制作，部分来自公开分享与朋友交换，版权归原作者所有。
+    </p>
+    <div class="hero-stats">
+      <span class="stat"><b id="stat-count">—</b><em>张蓝图</em></span>
+      <span class="stat"><b id="stat-tags">—</b><em>个游戏内分类</em></span>
+      <span class="stat"><b id="stat-logic">—</b><em>张带逻辑</em></span>
+    </div>
+  </section>
 
-  <p id="meta" class="meta"></p>
+  <section class="panel reveal" style="--d:.05s">
+    <div class="search-row">
+      <span class="search-ico" aria-hidden="true">⌕</span>
+      <input id="search" type="search" placeholder="搜索名称、描述、分类…" autocomplete="off" spellcheck="false" aria-label="搜索蓝图">
+    </div>
+    <div class="filters">
+      <div id="tags" class="tags" role="group" aria-label="按游戏内分类筛选"></div>
+      <label class="logic-filter">
+        <span>逻辑体量</span>
+        <select id="logic-range">
+          <option value="">不限</option>
+          <option value="0">无逻辑</option>
+          <option value="1-50">1 – 50 行</option>
+          <option value="51-200">51 – 200 行</option>
+          <option value="201-1000">201 – 1000 行</option>
+          <option value="1001-10000">1001 – 1 万行</option>
+          <option value="10001+">1 万行以上</option>
+        </select>
+      </label>
+    </div>
+    <p id="meta" class="meta"></p>
+  </section>
+
   <div id="grid" class="grid" aria-live="polite"></div>
-  <p id="empty" class="empty" hidden>没有匹配的蓝图。</p>
+  <p id="empty" class="empty" hidden>没有匹配的蓝图，换个条件试试。</p>
 </main>
 
-<footer class="foot wrap">
+<footer class="site-footer wrap">
   <span id="stamp"></span>
-  <span>蓝图由浏览器直接取自 GitHub 仓库，push 后刷新即可见。</span>
+  <span>数据由浏览器直接取自 GitHub 仓库 · 分类沿用游戏内标签</span>
 </footer>
 
 <div id="modal" class="modal" hidden>
@@ -41,14 +95,14 @@
     <dl id="m-stats" class="stats"></dl>
     <div id="m-tags" class="tags small"></div>
     <div class="actions">
-      <button id="m-copy" class="btn primary">复制蓝图</button>
-      <a id="m-download" class="btn" download>下载 .msch</a>
+      <button id="m-copy" class="btn primary" type="button">复制蓝图</button>
+      <a id="m-download" class="btn" download>下载文本</a>
       <a id="m-source" class="btn ghost" target="_blank" rel="noopener">在仓库查看</a>
     </div>
     <p id="m-hint" class="hint"></p>
   </div>
 </div>
 
-<script src="app.js?v=20261022b"></script>
+<script src="app.js?v=20261023a"></script>
 </body>
 </html>

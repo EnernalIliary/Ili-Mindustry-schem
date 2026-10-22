@@ -335,7 +335,7 @@ input[type="search"]:focus {
 }
 .chip .n { margin-left: .32rem; font-size: .78em; opacity: .62; font-variant-numeric: tabular-nums; }
 
-.logic-filter {
+.logic-filter, .range-filter {
   display: inline-flex;
   align-items: center;
   gap: .5rem;
@@ -343,7 +343,7 @@ input[type="search"]:focus {
   color: var(--muted);
   white-space: nowrap;
 }
-.logic-filter select {
+.logic-filter select, .range-filter select {
   padding: .32rem 1.6rem .32rem .6rem;
   color: var(--text);
   background: var(--panel-2)
@@ -359,6 +359,8 @@ input[type="search"]:focus {
 }
 .logic-filter select:hover { border-color: var(--ring); }
 .logic-filter select:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 4px var(--ring); }
+.range-filter select:hover { border-color: var(--ring); }
+.range-filter select:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 4px var(--ring); }
 
 .meta { margin: .1rem 0 .9rem; color: var(--muted); font-size: .84rem; font-variant-numeric: tabular-nums; }
 

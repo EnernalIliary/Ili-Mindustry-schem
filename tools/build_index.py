@@ -136,6 +136,8 @@ def collect(folder: Path, extra: dict | None = None) -> dict:
 
     # 游戏内自己打的标签（蓝图文件 tags['labels']），这才是「按游戏来」的那套。
     game_labels = schem_labels.parse_labels((sch.get("tags") or {}).get("labels", ""))
+    # 数字标签（1..9 / 10~19 / 20~29 / 极多）其实指「生效工厂总数」，单独拆出来当筛选项。
+    factory, game_labels = schem_labels.split_factory(game_labels)
     info = (extra or {}).get(slug) or {}
 
     return {
@@ -144,6 +146,7 @@ def collect(folder: Path, extra: dict | None = None) -> dict:
         "author": str(meta["author"]).strip(),
         "description": description,
         "labels": game_labels,
+        "factory": factory,
         "tags": tags,
         "category": category,
         "category_label": labels.get(category, ""),
@@ -204,28 +207,54 @@ def main() -> int:
             print(f"  - {line}", file=sys.stderr)
         return 1
 
+    # 游戏里有一张 1×1 的「000标签排序」蓝图，它的 labels 就是标签显示顺序的母版：
+    # 只拿它定顺序，本身不进列表。
+    order_entry = next(
+        (e for e in entries if e["name"].startswith("000") and e["tiles"] <= 4), None
+    )
+    label_order = list(order_entry["labels"]) if order_entry else []
+    if order_entry:
+        entries = [e for e in entries if e is not order_entry]
+
     entries.sort(key=lambda e: (e["created"] or "", e["name"]), reverse=True)
 
     category_counts: dict[str, int] = {}
     label_counts: dict[str, int] = {}
+    factory_counts: dict[str, int] = {}
     for entry in entries:
         for label in entry["tags"]:
             category_counts[label] = category_counts.get(label, 0) + 1
         for label in entry["labels"]:
             label_counts[label] = label_counts.get(label, 0) + 1
+        if entry["factory"]:
+            factory_counts[entry["factory"]] = factory_counts.get(entry["factory"], 0) + 1
 
     tags = category_counts  # kept under both names: the page reads "categories"
     _, labels = category_tags._tables()
     key_by_label = {v: k for k, v in labels.items()}
+    # 生效工厂总数：按 1..9 → 区间 → 极多 的固定顺序输出，页面下拉照这个顺序排。
+    factory_entries = [
+        {"name": name, "count": factory_counts[name]}
+        for name in schem_labels.FACTORY_ORDER
+        if name in factory_counts
+    ]
+
+    # 标签按「000标签排序」那张蓝图的顺序排，母版里没有的排最后（按出现次数）。
+    rank = {name: i for i, name in enumerate(label_order)}
+    label_entries = [
+        {"name": name, "count": count}
+        for name, count in sorted(
+            label_counts.items(), key=lambda kv: (rank.get(kv[0], len(rank)), -kv[1], kv[0])
+        )
+    ]
 
     index = {
         "generated_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
         "repo": repo_url(),
         "count": len(entries),
-        "labels": [
-            {"name": name, "count": count}
-            for name, count in sorted(label_counts.items(), key=lambda kv: (-kv[1], kv[0]))
-        ],
+        "label_order": label_order,
+        "labels": label_entries,
+        "factories": factory_entries,
         "tags": [{"name": k, "count": v} for k, v in sorted(tags.items(), key=lambda kv: (-kv[1], kv[0]))],
         "categories": [
             {"key": key_by_label.get(name, name), "name": name, "count": count}

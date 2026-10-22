@@ -17,7 +17,7 @@
     } catch (e) { document.documentElement.dataset.theme = "light"; }
   })();
 </script>
-<link rel="stylesheet" href="style.css?v=20261023b">
+<link rel="stylesheet" href="style.css?v=20261024a">
 </head>
 <body>
 <div class="decor" aria-hidden="true"><i class="blob b1"></i><i class="blob b2"></i><i class="blob b3"></i></div>
@@ -61,6 +61,12 @@
     </div>
     <div class="filters">
       <div id="tags" class="tags" role="group" aria-label="按游戏内分类筛选"></div>
+      <label class="range-filter" title="蓝图自带数字标签的含义：生效工厂总数">
+        <span>生效工厂</span>
+        <select id="factory-range">
+          <option value="">不限</option>
+        </select>
+      </label>
       <label class="logic-filter">
         <span>逻辑体量</span>
         <select id="logic-range">
@@ -107,6 +113,6 @@
   </div>
 </div>
 
-<script src="app.js?v=20261023b"></script>
+<script src="app.js?v=20261024a"></script>
 </body>
 </html>

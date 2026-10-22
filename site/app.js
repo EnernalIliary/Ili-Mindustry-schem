@@ -24,6 +24,7 @@
     header: $("header"),
     search: $("search"),
     tags: $("tags"),
+    factory: $("factory-range"),
     logic: $("logic-range"),
     meta: $("meta"),
     grid: $("grid"),
@@ -54,6 +55,7 @@
     source: "",
     query: "",
     cat: null,
+    factory: "",
     logic: "",
     lastFocus: null,
   };
@@ -112,6 +114,12 @@
     ));
   }
 
+  // 数字标签：1..9 是生效工厂台数，10~19 / 20~29 是区间，极多是更多。
+  function fmtFactory(value) {
+    if (!value) return "";
+    return value.replace("~", "–");
+  }
+
   /* ---------- 筛选 ---------- */
 
   function inLogicRange(lines) {
@@ -126,6 +134,7 @@
   function matches(bp) {
     const labels = bp.labels || [];
     if (state.cat && !labels.includes(state.cat)) return false;
+    if (state.factory && (bp.factory || "") !== state.factory) return false;
     if (!inLogicRange(bp.logic_lines || 0)) return false;
     const q = state.query.trim().toLowerCase();
     if (!q) return true;
@@ -145,6 +154,9 @@
               data-fallback="${bp.preview || ""}">`
       : `<span class="ph">无预览</span>`;
     const pills = (bp.labels || []).slice(0, 3).map((t) => `<span class="pill cat">${escapeHtml(t)}</span>`).join("");
+    const fac = bp.factory
+      ? `<span class="pill fac">工厂 ${escapeHtml(fmtFactory(bp.factory))}</span>`
+      : "";
     const logic = bp.logic_lines > 0
       ? `<span class="pill logic">逻辑 ${fmtNum(bp.logic_lines)} 行</span>`
       : "";
@@ -158,7 +170,7 @@
         <span class="card-body">
           <h2>${escapeHtml(bp.name)}</h2>
           <p class="desc">${escapeHtml(bp.description || "")}</p>
-          <span class="row">${pills}${logic}</span>
+          <span class="row">${pills}${fac}${logic}</span>
         </span>
       </button>`;
   }
@@ -176,6 +188,7 @@
 
     const bits = [`显示 ${fmtNum(Math.min(list.length, limit))} / ${fmtNum(data.count)} 张`];
     bits.push(state.cat ? `分类：${state.cat}` : "分类：全部");
+    if (state.factory) bits.push(`生效工厂：${fmtFactory(state.factory)}`);
     if (state.logic && els.logic.selectedOptions[0]) {
       bits.push(`逻辑：${els.logic.selectedOptions[0].textContent.trim()}`);
     }
@@ -188,9 +201,9 @@
   }
 
   function renderTags() {
-    // 游戏内自己打的标签（蓝图文件里的 labels），按出现次数排序
+    // 游戏内自己打的标签（蓝图文件里的 labels）。
+    // 顺序来自游戏里那张「000标签排序」蓝图，构建 index.json 时就排好了。
     const all = state.data.labels || [];
-    const shown = all.slice(0, 24);
     const chip = (label, count, active, value) => `
       <button class="chip" type="button" aria-pressed="${active}" data-cat="${escapeHtml(value || "")}">
         ${escapeHtml(label)}<span class="n">${fmtNum(count)}</span>
@@ -198,8 +211,18 @@
 
     els.tags.innerHTML =
       chip("全部", state.data.count, state.cat === null, "") +
-      shown.map((c) => chip(c.name, c.count, state.cat === c.name, c.name)).join("");
+      all.map((c) => chip(c.name, c.count, state.cat === c.name, c.name)).join("");
     els.statTags.textContent = fmtNum(all.length);
+  }
+
+  function renderFactories() {
+    const items = state.data.factories || [];
+    for (const item of items) {
+      const opt = document.createElement("option");
+      opt.value = item.name;
+      opt.textContent = `${fmtFactory(item.name)} · ${fmtNum(item.count)} 张`;
+      els.factory.appendChild(opt);
+    }
   }
 
   function renderStats() {
@@ -271,6 +294,7 @@
       statRow("尺寸", `${bp.width} × ${bp.height}`),
       statRow("方块", fmtNum(bp.tiles)),
       statRow("逻辑", bp.logic_lines > 0 ? `${fmtNum(bp.logic_lines)} 行 / ${fmtNum(bp.logic_blocks)} 块` : "无"),
+      statRow("生效工厂", bp.factory ? fmtFactory(bp.factory) : "—"),
       statRow("电力", power === null ? "—" : `${power > 0 ? "+" : ""}${fmtNum(power)}`),
       statRow("导入于", bp.created || "—"),
     ].join("");
@@ -441,6 +465,7 @@
     }
 
     renderStats();
+    renderFactories();
     renderTags();
     render();
   }
@@ -464,6 +489,11 @@
 
     els.logic.addEventListener("change", () => {
       state.logic = els.logic.value;
+      render();
+    });
+
+    els.factory.addEventListener("change", () => {
+      state.factory = els.factory.value;
       render();
     });
 

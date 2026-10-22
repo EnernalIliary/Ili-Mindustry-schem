@@ -35,6 +35,29 @@ def strip_colors(text: str) -> str:
     return text.strip()
 
 
+# 数字标签不是分类，是「生效工厂总数」：1..9 是确切台数，10~19 / 20~29 是区间，极多是更多。
+FACTORY_RE = re.compile(r"^([1-9]|10~19|20~29|极多)$")
+
+# 页面上按这个顺序排列（1→9，再区间，最后极多）。
+FACTORY_ORDER = [str(i) for i in range(1, 10)] + ["10~19", "20~29", "极多"]
+
+
+def split_factory(labels: list[str]) -> tuple[str, list[str]]:
+    """把数字标签挑出来当作「生效工厂总数」，返回 (factory, 其余标签)。
+
+    蓝图只会带一个数字标签；万一有多个，取第一个，其余丢弃。
+    """
+    factory = ""
+    rest: list[str] = []
+    for label in labels:
+        if FACTORY_RE.match(label):
+            if not factory:
+                factory = label
+            continue
+        rest.append(label)
+    return factory, rest
+
+
 def parse_labels(raw: str) -> list[str]:
     """把蓝图 tags['labels'] 解析成标签列表（去重、保序、去空）。"""
     raw = (raw or "").strip()

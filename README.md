@@ -51,6 +51,12 @@ python3 tools/msch_min.py              # 编解码器自测
 
 需要 Python 3.9+，无第三方依赖。
 
+## 提交规矩（重要）
+
+- **不要手动提交 `index.json`**：它是生成物，push 之后 GitHub Action 会校验并重写它、自己提交。
+- push 之前先 `git pull --rebase`，否则会跟 Action 的自动提交打架。
+- 平时你只改 `blueprints/<slug>/` 里的文件就够了。
+
 ## meta.json 字段
 
 | 字段 | 必填 | 说明 |

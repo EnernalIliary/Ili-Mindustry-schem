@@ -17,7 +17,7 @@
     } catch (e) { document.documentElement.dataset.theme = "light"; }
   })();
 </script>
-<link rel="stylesheet" href="style.css?v=20261024a">
+<link rel="stylesheet" href="style.css?v=20261024b">
 </head>
 <body>
 <div class="decor" aria-hidden="true"><i class="blob b1"></i><i class="blob b2"></i><i class="blob b3"></i></div>
@@ -60,7 +60,12 @@
       <input id="search" type="search" placeholder="搜索名称、描述、分类…" autocomplete="off" spellcheck="false" aria-label="搜索蓝图">
     </div>
     <div class="filters">
-      <div id="tags" class="tags" role="group" aria-label="按游戏内分类筛选"></div>
+      <div id="tags" class="tags" role="group" aria-label="按游戏内标签筛选（可多选）"></div>
+      <div id="mode-switch" class="mode-switch" hidden>
+        <span class="mode-label">多标签</span>
+        <button type="button" data-mode="or" class="on" aria-pressed="true" title="满足任意一个标签">任一（或）</button>
+        <button type="button" data-mode="and" aria-pressed="false" title="同时满足所有标签">全部（与）</button>
+      </div>
       <label class="range-filter" title="蓝图自带数字标签的含义：生效工厂总数">
         <span>生效工厂</span>
         <select id="factory-range">
@@ -113,6 +118,6 @@
   </div>
 </div>
 
-<script src="app.js?v=20261024a"></script>
+<script src="app.js?v=20261024b"></script>
 </body>
 </html>

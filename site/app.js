@@ -2,11 +2,12 @@
 (() => {
   "use strict";
 
-  // 三个数据源按顺序回退；base 为空 = 本站镜像
+  // 数据源按顺序回退；base 为空 = 本站镜像。
+  // 本站镜像排第一：它每 10 分钟从仓库同步一次，而 jsDelivr 会缓存旧文件（曾出现过 1 条的老 index.json）。
   const SOURCES = [
+    { label: "本站镜像", base: "" },
     { label: "GitHub 直连", base: "https://raw.githubusercontent.com/EnernalIliary/Ili-Mindustry-schem/main/" },
     { label: "jsDelivr", base: "https://cdn.jsdelivr.net/gh/EnernalIliary/Ili-Mindustry-schem@main/" },
-    { label: "本站镜像", base: "" },
   ];
   const REPO_PAGE = "https://github.com/EnernalIliary/Ili-Mindustry-schem";
 
@@ -24,6 +25,7 @@
     header: $("header"),
     search: $("search"),
     tags: $("tags"),
+    mode: $("mode-switch"),
     factory: $("factory-range"),
     logic: $("logic-range"),
     meta: $("meta"),
@@ -54,7 +56,8 @@
     base: "",
     source: "",
     query: "",
-    cat: null,
+    cats: [],
+    mode: "or",
     factory: "",
     logic: "",
     lastFocus: null,
@@ -96,11 +99,11 @@
     dot.addEventListener("animationend", () => dot.remove(), { once: true });
   }
 
-  async function fetchText(url, ms = 8000) {
+  async function fetchText(url, ms = 8000, cacheMode = "no-cache") {
     const ctrl = new AbortController();
     const timer = setTimeout(() => ctrl.abort(), ms);
     try {
-      const res = await fetch(url, { signal: ctrl.signal, cache: "no-cache" });
+      const res = await fetch(url, { signal: ctrl.signal, cache: cacheMode });
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       return await res.text();
     } finally {
@@ -133,7 +136,12 @@
 
   function matches(bp) {
     const labels = bp.labels || [];
-    if (state.cat && !labels.includes(state.cat)) return false;
+    if (state.cats.length) {
+      const hit = state.mode === "and"
+        ? state.cats.every((c) => labels.includes(c))
+        : state.cats.some((c) => labels.includes(c));
+      if (!hit) return false;
+    }
     if (state.factory && (bp.factory || "") !== state.factory) return false;
     if (!inLogicRange(bp.logic_lines || 0)) return false;
     const q = state.query.trim().toLowerCase();
@@ -187,7 +195,11 @@
     els.empty.hidden = list.length > 0;
 
     const bits = [`显示 ${fmtNum(Math.min(list.length, limit))} / ${fmtNum(data.count)} 张`];
-    bits.push(state.cat ? `分类：${state.cat}` : "分类：全部");
+    if (state.cats.length) {
+      bits.push(`标签：${state.cats.join(state.mode === "and" ? " 且 " : " 或 ")}`);
+    } else {
+      bits.push("标签：全部");
+    }
     if (state.factory) bits.push(`生效工厂：${fmtFactory(state.factory)}`);
     if (state.logic && els.logic.selectedOptions[0]) {
       bits.push(`逻辑：${els.logic.selectedOptions[0].textContent.trim()}`);
@@ -205,13 +217,23 @@
     // 顺序来自游戏里那张「000标签排序」蓝图，构建 index.json 时就排好了。
     const all = state.data.labels || [];
     const chip = (label, count, active, value) => `
-      <button class="chip" type="button" aria-pressed="${active}" data-cat="${escapeHtml(value || "")}">
+      <button class="chip${active ? " active" : ""}" type="button" aria-pressed="${active}" data-cat="${escapeHtml(value || "")}" title="${escapeHtml(label)}">
         ${escapeHtml(label)}<span class="n">${fmtNum(count)}</span>
       </button>`;
 
     els.tags.innerHTML =
-      chip("全部", state.data.count, state.cat === null, "") +
-      all.map((c) => chip(c.name, c.count, state.cat === c.name, c.name)).join("");
+      chip("全部", state.data.count, state.cats.length === 0, "") +
+      all.map((c) => chip(c.name, c.count, state.cats.includes(c.name), c.name)).join("");
+
+    // 选了 2 个以上才显示「与/或」开关
+    if (els.mode) {
+      els.mode.hidden = state.cats.length < 2;
+      for (const btn of els.mode.querySelectorAll("button[data-mode]")) {
+        const on = btn.dataset.mode === state.mode;
+        btn.classList.toggle("on", on);
+        btn.setAttribute("aria-pressed", String(on));
+      }
+    }
     els.statTags.textContent = fmtNum(all.length);
   }
 
@@ -448,7 +470,8 @@
     let lastErr = null;
     for (const source of SOURCES) {
       try {
-        const text = await fetchText(source.base + "index.json", 8000);
+        // no-store：清单必须每次取新的，避免浏览器拿旧 index.json（旧数据没有标签顺序和工厂字段）
+        const text = await fetchText(source.base + "index.json", 8000, "no-store");
         state.data = JSON.parse(text);
         state.base = source.base;
         state.source = source.label;
@@ -482,10 +505,27 @@
       const chip = ev.target.closest(".chip");
       if (!chip) return;
       const value = chip.dataset.cat;
-      state.cat = value ? value : null;
+      if (!value) {
+        // 「全部」= 清空
+        state.cats = [];
+      } else if (state.cats.includes(value)) {
+        state.cats = state.cats.filter((name) => name !== value);
+      } else {
+        state.cats = [...state.cats, value];
+      }
       renderTags();
       render();
     });
+
+    if (els.mode) {
+      els.mode.addEventListener("click", (ev) => {
+        const btn = ev.target.closest("button[data-mode]");
+        if (!btn) return;
+        state.mode = btn.dataset.mode === "and" ? "and" : "or";
+        renderTags();
+        render();
+      });
+    }
 
     els.logic.addEventListener("change", () => {
       state.logic = els.logic.value;

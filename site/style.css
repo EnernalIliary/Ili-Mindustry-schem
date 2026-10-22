@@ -335,6 +335,38 @@ input[type="search"]:focus {
 }
 .chip .n { margin-left: .32rem; font-size: .78em; opacity: .62; font-variant-numeric: tabular-nums; }
 
+/* 「与 / 或」匹配模式开关：选了 2 个以上标签才出现 */
+.mode-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: .3rem;
+  padding: .18rem .3rem .18rem .7rem;
+  font-size: .8rem;
+  color: var(--muted);
+  background: var(--panel-2);
+  border: 1px solid var(--ring);
+  border-radius: 999px;
+  white-space: nowrap;
+}
+.mode-switch .mode-label { font-size: .78rem; opacity: .8; }
+.mode-switch button {
+  padding: .22rem .66rem;
+  font: inherit;
+  font-size: .8rem;
+  color: var(--muted);
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: color .2s var(--ease), background .2s var(--ease), border-color .2s var(--ease);
+}
+.mode-switch button:hover { color: var(--text); border-color: var(--ring); }
+.mode-switch button.on {
+  color: #fff;
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  box-shadow: 0 8px 18px -12px var(--accent);
+}
+
 .logic-filter, .range-filter {
   display: inline-flex;
   align-items: center;

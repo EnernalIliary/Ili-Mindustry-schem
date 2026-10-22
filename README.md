@@ -41,6 +41,30 @@ tools/                     # 校验与生成脚本
 
 如果校验失败，Action 会红叉并打印原因（`meta.json` 缺字段、蓝图解析不了、文件夹名不合规），页面不会更新。
 
+## 一键导入游戏里的蓝图（推荐）
+
+游戏存档里的 `.msch` 直接批量搬进来，自动生成配色预览图、标签、尺寸，然后 commit + push：
+
+双击 `import-schematics.cmd`，或者：
+
+```bash
+python tools/import_schematics.py --src "E:\Program Files (x86)\Steam\steamapps\common\Mindustry\saves\schematics"
+```
+
+| 参数 | 作用 |
+| --- | --- |
+| `--src <目录>` | `.msch` 所在目录（必填；`.cmd` 里没给参数时用上面那个默认路径） |
+| `--no-push` | 只在本地生成并提交，不推送（想先看一眼时用） |
+| `--dry-run` | 只解析和渲染，什么都不写 |
+| `--force` | 内容没变也重写（改了预览算法之后用） |
+| `--author` | 写进 `meta.json` 的作者，默认 `Iliary` |
+| `--token` | `git push` 不通时走 GitHub API 兜底用的 token（也可用 `$GITHUB_TOKEN` 或仓库根的 `.github-token`） |
+
+- **增量**：按蓝图内容哈希判断，没改过的文件不会重写，也不会重复提交。
+- **slug**：`名字-ascii部分-内容哈希`，名字取文件名（去掉 `.msch`），所以同名不同内容的蓝图不会互相覆盖。
+- **预览图**：按方块实际占地画色块图 + 网格，不是游戏截图（`.msch` 里没有贴图信息）；≥1 MiB 的蓝图不做预览，卡片显示占位。
+- 单张蓝图文本特别大（仓库里最大一张 21 MiB，像素画类）会拖慢 git 仓库和首次打开；介意的话删掉对应目录再 push。
+
 ## 本地自检
 
 ```bash

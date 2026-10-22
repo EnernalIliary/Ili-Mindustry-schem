@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-10-22T14:40:57Z",
+  "generated_at": "2026-10-22T14:41:15Z",
   "repo": "https://github.com/EnernalIliary/Ili-Mindustry-schem",
-  "count": 670,
+  "count": 669,
   "label_order": [
     "常用",
     "ILI",
@@ -354,7 +354,7 @@
   "tags": [
     {
       "name": "运输",
-      "count": 432
+      "count": 431
     },
     {
       "name": "电力",
@@ -397,7 +397,7 @@
     {
       "key": "distribution",
       "name": "运输",
-      "count": 432
+      "count": 431
     },
     {
       "key": "power",
@@ -447,86 +447,9 @@
   ],
   "logic": {
     "max_lines": 564073,
-    "with_logic": 457
+    "with_logic": 456
   },
   "blueprints": [
-    {
-      "slug": "example-copper-line",
-      "name": "铜矿示例产线",
-      "author": "Iliary",
-      "description": "示例蓝图：钻头 -> 传送带 -> 路由器，附带一个把核心铜量打印到信息板的小处理器。放真蓝图后可以删掉这个文件夹。",
-      "labels": [],
-      "factory": "",
-      "tags": [
-        "运输"
-      ],
-      "category": "distribution",
-      "category_label": "运输",
-      "requirements": [
-        {
-          "item": "copper",
-          "amount": 1020
-        },
-        {
-          "item": "lead",
-          "amount": 1120
-        },
-        {
-          "item": "silicon",
-          "amount": 80
-        },
-        {
-          "item": "graphite",
-          "amount": 65
-        },
-        {
-          "item": "thorium",
-          "amount": 50
-        }
-      ],
-      "power_balance": 0,
-      "game_version": "146",
-      "width": 6,
-      "height": 4,
-      "tiles": 10,
-      "logic_blocks": 1,
-      "logic_lines": 4,
-      "blocks": [
-        {
-          "block": "conveyor",
-          "count": 5
-        },
-        {
-          "block": "core-shard",
-          "count": 1
-        },
-        {
-          "block": "logic-processor",
-          "count": 1
-        },
-        {
-          "block": "mechanical-drill",
-          "count": 1
-        },
-        {
-          "block": "message",
-          "count": 1
-        },
-        {
-          "block": "router",
-          "count": 1
-        }
-      ],
-      "sha256": "8c85e05524efe7b1",
-      "chars": 520,
-      "has_preview": true,
-      "created": "2026-10-22",
-      "updated": "2026-10-22",
-      "file": "data/example-copper-line/blueprint.txt",
-      "preview": "data/example-copper-line/preview.png",
-      "source": "blueprints/example-copper-line/blueprint.txt",
-      "source_preview": "blueprints/example-copper-line/preview.png"
-    },
     {
       "slug": "bp-45b535",
       "name": "序切着陆控制",

@@ -1,0 +1,43 @@
+name: build-index
+
+# 每次 push 到 main，校验所有蓝图并重新生成 index.json。
+# 站点只读 index.json，所以校验失败 = 页面不会带上坏数据。
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: build-index
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Validate blueprints and rebuild index.json
+        run: python tools/build_index.py
+
+      - name: Commit index.json if it changed
+        run: |
+          if git diff --quiet -- index.json; then
+            echo "index.json 无变化，跳过提交"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.json
+          git commit -m "chore: rebuild index.json"
+          git push

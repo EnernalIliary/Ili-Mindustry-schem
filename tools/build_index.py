@@ -1,0 +1,199 @@
+#!/usr/bin/env python3
+"""Scan blueprints/ and emit index.json for the gallery page.
+
+Run from anywhere:
+
+    python3 tools/build_index.py            # write index.json
+    python3 tools/build_index.py --check    # validate only, write nothing
+
+Exit code 1 means the repo is not publishable (bad blueprint, missing field).
+The site never parses blueprints at runtime -- it reads index.json only.
+"""
+
+from __future__ import annotations
+
+import argparse
+import hashlib
+import json
+import os
+import re
+import sys
+from datetime import datetime, timezone
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+
+import msch_min  # noqa: E402
+
+ROOT = Path(__file__).resolve().parent.parent
+BLUEPRINT_DIR = ROOT / "blueprints"
+INDEX_PATH = ROOT / "index.json"
+
+SLUG_RE = re.compile(r"^[a-z0-9][a-z0-9-]{1,63}$")
+REQUIRED_FIELDS = ("name", "author", "description")
+MAX_PREVIEW_BYTES = 4 * 1024 * 1024
+
+
+class Problem(Exception):
+    """A blueprint that cannot be published."""
+
+
+def load_meta(folder: Path) -> dict:
+    path = folder / "meta.json"
+    if not path.is_file():
+        raise Problem("missing meta.json")
+    try:
+        meta = json.loads(path.read_text(encoding="utf-8-sig"))
+    except json.JSONDecodeError as exc:
+        raise Problem(f"meta.json is not valid JSON: {exc}") from exc
+    if not isinstance(meta, dict):
+        raise Problem("meta.json must be a JSON object")
+    missing = [k for k in REQUIRED_FIELDS if not str(meta.get(k, "")).strip()]
+    if missing:
+        raise Problem(f"meta.json missing {', '.join(missing)}")
+    tags = meta.get("tags", [])
+    if not isinstance(tags, list) or any(not isinstance(t, str) for t in tags):
+        raise Problem("meta.json tags must be a list of strings")
+    for key in ("created", "updated"):
+        value = meta.get(key)
+        if value is not None and not re.fullmatch(r"\d{4}-\d{2}-\d{2}", str(value)):
+            raise Problem(f"meta.json {key} must be YYYY-MM-DD")
+    return meta
+
+
+def load_blueprint(folder: Path) -> tuple[str, dict]:
+    path = folder / "blueprint.txt"
+    if not path.is_file():
+        raise Problem("missing blueprint.txt")
+    text = path.read_text(encoding="utf-8-sig").strip()
+    if not text:
+        raise Problem("blueprint.txt is empty")
+    try:
+        sch = msch_min.parse_base64(text)
+    except msch_min.MschError as exc:
+        raise Problem(f"blueprint.txt does not decode: {exc}") from exc
+    if sch["width"] <= 0 or sch["height"] <= 0:
+        raise Problem(f"blueprint has invalid size {sch['width']}x{sch['height']}")
+    if not sch["tiles"]:
+        raise Problem("blueprint has no blocks")
+    return text, sch
+
+
+def repo_url() -> str:
+    """Public URL of the repo, used by the page's "view source" link."""
+    explicit = os.environ.get("BLUEPRINT_REPO_URL", "").strip()
+    if explicit:
+        return explicit.rstrip("/")
+    slug = os.environ.get("GITHUB_REPOSITORY", "").strip()
+    return f"https://github.com/{slug}" if "/" in slug else ""
+
+
+def block_summary(sch: dict) -> list[dict]:
+    counts: dict[str, int] = {}
+    for tile in sch["tiles"]:
+        counts[tile["block"]] = counts.get(tile["block"], 0) + 1
+    ordered = sorted(counts.items(), key=lambda kv: (-kv[1], kv[0]))
+    return [{"block": name, "count": n} for name, n in ordered[:8]]
+
+
+def collect(folder: Path) -> dict:
+    slug = folder.name
+    if not SLUG_RE.match(slug):
+        raise Problem("folder name must be lowercase letters, digits and dashes")
+
+    meta = load_meta(folder)
+    text, sch = load_blueprint(folder)
+
+    preview = folder / "preview.png"
+    has_preview = preview.is_file()
+    if has_preview and preview.stat().st_size > MAX_PREVIEW_BYTES:
+        raise Problem(f"preview.png is {preview.stat().st_size // 1024} KiB, limit is 4 MiB")
+
+    logic = sch["logic"]
+    name = str(meta["name"]).strip()
+    description = str(meta["description"]).strip()
+
+    return {
+        "slug": slug,
+        "name": name,
+        "author": str(meta["author"]).strip(),
+        "description": description,
+        "tags": [t.strip() for t in meta.get("tags", []) if t.strip()],
+        "game_version": str(meta.get("game_version", "")).strip(),
+        "width": sch["width"],
+        "height": sch["height"],
+        "tiles": len(sch["tiles"]),
+        "logic_blocks": len(logic),
+        "logic_lines": sum(len(entry["lines"]) for entry in logic),
+        "blocks": block_summary(sch),
+        "sha256": hashlib.sha256(text.encode("utf-8")).hexdigest()[:16],
+        "chars": len(text),
+        "has_preview": has_preview,
+        "created": str(meta.get("created") or ""),
+        "updated": str(meta.get("updated") or meta.get("created") or ""),
+        "file": f"data/{slug}/blueprint.txt",
+        "preview": f"data/{slug}/preview.png" if has_preview else None,
+    }
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--check", action="store_true", help="validate only, do not write")
+    args = parser.parse_args()
+
+    if not BLUEPRINT_DIR.is_dir():
+        print(f"error: {BLUEPRINT_DIR} does not exist", file=sys.stderr)
+        return 1
+
+    entries: list[dict] = []
+    problems: list[str] = []
+
+    for folder in sorted(BLUEPRINT_DIR.iterdir()):
+        if not folder.is_dir() or folder.name.startswith("."):
+            continue
+        try:
+            entries.append(collect(folder))
+        except Problem as exc:
+            problems.append(f"{folder.name}: {exc}")
+        except msch_min.MschError as exc:
+            problems.append(f"{folder.name}: {exc}")
+
+    seen = {}
+    for entry in entries:
+        if entry["slug"] in seen:
+            problems.append(f"duplicate slug {entry['slug']}")
+        seen[entry["slug"]] = entry
+
+    if problems:
+        print(f"{len(problems)} problem(s) found:", file=sys.stderr)
+        for line in problems:
+            print(f"  - {line}", file=sys.stderr)
+        return 1
+
+    entries.sort(key=lambda e: (e["created"] or "", e["name"]), reverse=True)
+
+    tags: dict[str, int] = {}
+    for entry in entries:
+        for tag in entry["tags"]:
+            tags[tag] = tags.get(tag, 0) + 1
+
+    index = {
+        "generated_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "repo": repo_url(),
+        "count": len(entries),
+        "tags": [{"name": k, "count": v} for k, v in sorted(tags.items(), key=lambda kv: (-kv[1], kv[0]))],
+        "blueprints": entries,
+    }
+    payload = json.dumps(index, ensure_ascii=False, indent=2) + "\n"
+
+    if args.check:
+        print(f"ok: {len(entries)} blueprint(s) valid, nothing written")
+        return 0
+
+    INDEX_PATH.write_text(payload, encoding="utf-8")
+    print(f"wrote {INDEX_PATH.relative_to(ROOT)}: {len(entries)} blueprint(s), {len(tags)} tag(s)")
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

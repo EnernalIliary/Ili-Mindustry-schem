@@ -1,0 +1,66 @@
+{
+  "generated_at": "2026-10-22T07:31:21Z",
+  "repo": "",
+  "count": 1,
+  "tags": [
+    {
+      "name": "生产",
+      "count": 1
+    },
+    {
+      "name": "示例",
+      "count": 1
+    }
+  ],
+  "blueprints": [
+    {
+      "slug": "example-copper-line",
+      "name": "铜矿示例产线",
+      "author": "Iliary",
+      "description": "示例蓝图：钻头 -> 传送带 -> 路由器，附带一个把核心铜量打印到信息板的小处理器。放真蓝图后可以删掉这个文件夹。",
+      "tags": [
+        "示例",
+        "生产"
+      ],
+      "game_version": "146",
+      "width": 6,
+      "height": 4,
+      "tiles": 10,
+      "logic_blocks": 1,
+      "logic_lines": 4,
+      "blocks": [
+        {
+          "block": "conveyor",
+          "count": 5
+        },
+        {
+          "block": "core-shard",
+          "count": 1
+        },
+        {
+          "block": "logic-processor",
+          "count": 1
+        },
+        {
+          "block": "mechanical-drill",
+          "count": 1
+        },
+        {
+          "block": "message",
+          "count": 1
+        },
+        {
+          "block": "router",
+          "count": 1
+        }
+      ],
+      "sha256": "8c85e05524efe7b1",
+      "chars": 520,
+      "has_preview": false,
+      "created": "2026-10-22",
+      "updated": "2026-10-22",
+      "file": "data/example-copper-line/blueprint.txt",
+      "preview": null
+    }
+  ]
+}

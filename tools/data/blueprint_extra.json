@@ -16891,5 +16891,166 @@
       }
     ],
     "power_balance": 0
+  },
+  "badapple-ed7a28": {
+    "requirements": [
+      {
+        "item": "lead",
+        "amount": 61300
+      },
+      {
+        "item": "silicon",
+        "amount": 34610
+      },
+      {
+        "item": "graphite",
+        "amount": 6885
+      },
+      {
+        "item": "thorium",
+        "amount": 5575
+      },
+      {
+        "item": "titanium",
+        "amount": 390
+      },
+      {
+        "item": "plastanium",
+        "amount": 240
+      },
+      {
+        "item": "surge-alloy",
+        "amount": 410
+      },
+      {
+        "item": "copper",
+        "amount": 44730
+      },
+      {
+        "item": "metaglass",
+        "amount": 100
+      },
+      {
+        "item": "phase-fabric",
+        "amount": 75
+      }
+    ],
+    "power_balance": -1800
+  },
+  "pic-22174c": {
+    "requirements": [
+      {
+        "item": "surge-alloy",
+        "amount": 72
+      },
+      {
+        "item": "titanium",
+        "amount": 324
+      },
+      {
+        "item": "copper",
+        "amount": 7200
+      },
+      {
+        "item": "lead",
+        "amount": 5200
+      },
+      {
+        "item": "silicon",
+        "amount": 4940
+      },
+      {
+        "item": "metaglass",
+        "amount": 600
+      },
+      {
+        "item": "phase-fabric",
+        "amount": 450
+      },
+      {
+        "item": "graphite",
+        "amount": 5
+      },
+      {
+        "item": "thorium",
+        "amount": 18
+      }
+    ],
+    "power_balance": 0
+  },
+  "pic-7b5c92": {
+    "requirements": [
+      {
+        "item": "lead",
+        "amount": 6850
+      },
+      {
+        "item": "silicon",
+        "amount": 6250
+      },
+      {
+        "item": "metaglass",
+        "amount": 1200
+      },
+      {
+        "item": "phase-fabric",
+        "amount": 900
+      },
+      {
+        "item": "copper",
+        "amount": 8010
+      }
+    ],
+    "power_balance": 0
+  },
+  "pic-8276d8": {
+    "requirements": [
+      {
+        "item": "lead",
+        "amount": 14250
+      },
+      {
+        "item": "silicon",
+        "amount": 13800
+      },
+      {
+        "item": "metaglass",
+        "amount": 900
+      },
+      {
+        "item": "phase-fabric",
+        "amount": 675
+      },
+      {
+        "item": "copper",
+        "amount": 22410
+      }
+    ],
+    "power_balance": 0
+  },
+  "pic-s-990ba5": {
+    "requirements": [
+      {
+        "item": "lead",
+        "amount": 5200
+      },
+      {
+        "item": "silicon",
+        "amount": 4900
+      },
+      {
+        "item": "metaglass",
+        "amount": 600
+      },
+      {
+        "item": "phase-fabric",
+        "amount": 450
+      },
+      {
+        "item": "copper",
+        "amount": 7200
+      }
+    ],
+    "power_balance": 0
   }
 }

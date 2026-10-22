@@ -104,3 +104,24 @@ python3 tools/msch_min.py              # 编解码器自测
 
 页脚会显示这次实际用的是哪条（`数据源：GitHub 直连 / jsDelivr / 本站镜像`）。
 服务器只负责托管页面、以及在 GitHub 通的时候做镜像；就算服务器拉不动 GitHub，访客仍能直接从仓库看到最新内容。
+
+## 预览图与材料清单
+
+预览不是游戏导出的——Mindustry 只在显存里现画蓝图缩略图，磁盘上没有对应文件。这里用
+[mindustry-schematic-parser](https://github.com/JeanJPNM/mindustry-schematic-parser) 的 node-canvas
+渲染真实贴图，顺手算材料清单和电力收支：
+
+```bash
+cd renderer
+npm install        # 国内可先 npm config set registry https://registry.npmmirror.com
+node render.mjs ../blueprints ../_out --png --extra ../tools/data/blueprint_extra.json \
+  --max-tiles 20000 --max-bytes 400000
+```
+
+- 产物直接覆盖 `blueprints/<slug>/preview.png`；`--extra` 写出的 `tools/data/blueprint_extra.json`
+  提供材料清单与电力收支，`tools/build_index.py` 会自动合并进 `index.json`。
+- **1.8 G 内存的机器必须限内存**：`systemd-run --scope -p MemoryMax=700M -p MemorySwapMax=0 node render.mjs ...`。
+  像素画类蓝图（`linux-on-mlogv32` 21 MB、`badapple` 3.4 MB）不加限制会把整机跑到 OOM。
+- `--max-tiles` / `--max-bytes` 会跳过超大蓝图；含模组方块（`landing-pad`、`logic-display` 等）的蓝图解析会报
+  `block ... could not be found in the registry`。这两种都保留纯色方块图，不影响站点。当前 674 张里 573 张是真实渲染。
+- 新增或改动了蓝图后，重跑一次渲染再 `git push`。

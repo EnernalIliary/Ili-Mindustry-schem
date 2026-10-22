@@ -22,7 +22,12 @@ const all = fs
   .filter((d) => d.isDirectory())
   .map((d) => d.name)
   .sort();
-const slugs = limit > 0 ? all.slice(0, limit) : all;
+// --only a,b,c 只渲染指定 slug；--sleep ms 每张之间歇一会儿（大图慢慢跑）
+const onlyIdx = args.indexOf("--only");
+const ONLY = onlyIdx >= 0 ? new Set(args[onlyIdx + 1].split(",").filter(Boolean)) : null;
+const sleepIdx = args.indexOf("--sleep");
+const SLEEP = sleepIdx >= 0 ? parseInt(args[sleepIdx + 1], 10) : 0;
+const slugs = (limit > 0 ? all.slice(0, limit) : all).filter((s) => !ONLY || ONLY.has(s));
 
 const extra = {};
 let ok = 0;
@@ -71,6 +76,7 @@ for (const slug of slugs) {
     const mb = Math.round(process.memoryUsage().rss / 1048576);
     process.stderr.write(`progress ${ok}/${slugs.length} rss=${mb}MB\n`);
   }
+  if (SLEEP > 0) await new Promise((r) => setTimeout(r, SLEEP));
 }
 
 if (extraOut) fs.writeFileSync(extraOut, JSON.stringify(extra, null, 2) + "\n");

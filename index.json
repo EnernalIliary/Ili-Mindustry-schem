@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-10-22T13:01:13Z",
-  "repo": "https://github.com/EnernalIliary/Ili-Mindustry-schem",
-  "count": 674,
+  "generated_at": "2026-10-22T13:10:46Z",
+  "repo": "",
+  "count": 673,
   "labels": [
     {
       "name": "ILI",
@@ -291,7 +291,7 @@
   "tags": [
     {
       "name": "运输",
-      "count": 434
+      "count": 433
     },
     {
       "name": "电力",
@@ -334,7 +334,7 @@
     {
       "key": "distribution",
       "name": "运输",
-      "count": 434
+      "count": 433
     },
     {
       "key": "power",
@@ -383,8 +383,8 @@
     }
   ],
   "logic": {
-    "max_lines": 2251980,
-    "with_logic": 460
+    "max_lines": 564073,
+    "with_logic": 459
   },
   "blueprints": [
     {
@@ -41695,8 +41695,45 @@
       ],
       "category": "defense",
       "category_label": "防御",
-      "requirements": [],
-      "power_balance": null,
+      "requirements": [
+        {
+          "item": "surge-alloy",
+          "amount": 72
+        },
+        {
+          "item": "titanium",
+          "amount": 324
+        },
+        {
+          "item": "copper",
+          "amount": 7200
+        },
+        {
+          "item": "lead",
+          "amount": 5200
+        },
+        {
+          "item": "silicon",
+          "amount": 4940
+        },
+        {
+          "item": "metaglass",
+          "amount": 600
+        },
+        {
+          "item": "phase-fabric",
+          "amount": 450
+        },
+        {
+          "item": "graphite",
+          "amount": 5
+        },
+        {
+          "item": "thorium",
+          "amount": 18
+        }
+      ],
+      "power_balance": 0,
       "game_version": "",
       "width": 22,
       "height": 17,
@@ -41756,8 +41793,29 @@
       ],
       "category": "other",
       "category_label": "",
-      "requirements": [],
-      "power_balance": null,
+      "requirements": [
+        {
+          "item": "lead",
+          "amount": 5200
+        },
+        {
+          "item": "silicon",
+          "amount": 4900
+        },
+        {
+          "item": "metaglass",
+          "amount": 600
+        },
+        {
+          "item": "phase-fabric",
+          "amount": 450
+        },
+        {
+          "item": "copper",
+          "amount": 7200
+        }
+      ],
+      "power_balance": 0,
       "game_version": "",
       "width": 20,
       "height": 15,
@@ -41797,8 +41855,29 @@
       ],
       "category": "other",
       "category_label": "",
-      "requirements": [],
-      "power_balance": null,
+      "requirements": [
+        {
+          "item": "lead",
+          "amount": 14250
+        },
+        {
+          "item": "silicon",
+          "amount": 13800
+        },
+        {
+          "item": "metaglass",
+          "amount": 900
+        },
+        {
+          "item": "phase-fabric",
+          "amount": 675
+        },
+        {
+          "item": "copper",
+          "amount": 22410
+        }
+      ],
+      "power_balance": 0,
       "game_version": "",
       "width": 24,
       "height": 25,
@@ -42036,8 +42115,29 @@
       ],
       "category": "other",
       "category_label": "",
-      "requirements": [],
-      "power_balance": null,
+      "requirements": [
+        {
+          "item": "lead",
+          "amount": 6850
+        },
+        {
+          "item": "silicon",
+          "amount": 6250
+        },
+        {
+          "item": "metaglass",
+          "amount": 1200
+        },
+        {
+          "item": "phase-fabric",
+          "amount": 900
+        },
+        {
+          "item": "copper",
+          "amount": 8010
+        }
+      ],
+      "power_balance": 0,
       "game_version": "",
       "width": 21,
       "height": 27,
@@ -47650,8 +47750,49 @@
       ],
       "category": "distribution",
       "category_label": "运输",
-      "requirements": [],
-      "power_balance": null,
+      "requirements": [
+        {
+          "item": "lead",
+          "amount": 61300
+        },
+        {
+          "item": "silicon",
+          "amount": 34610
+        },
+        {
+          "item": "graphite",
+          "amount": 6885
+        },
+        {
+          "item": "thorium",
+          "amount": 5575
+        },
+        {
+          "item": "titanium",
+          "amount": 390
+        },
+        {
+          "item": "plastanium",
+          "amount": 240
+        },
+        {
+          "item": "surge-alloy",
+          "amount": 410
+        },
+        {
+          "item": "copper",
+          "amount": 44730
+        },
+        {
+          "item": "metaglass",
+          "amount": 100
+        },
+        {
+          "item": "phase-fabric",
+          "amount": 75
+        }
+      ],
+      "power_balance": -1800,
       "game_version": "",
       "width": 50,
       "height": 37,
@@ -52615,69 +52756,6 @@
       "preview": "data/bp-7b8a4f/preview.png",
       "source": "blueprints/bp-7b8a4f/blueprint.txt",
       "source_preview": "blueprints/bp-7b8a4f/preview.png"
-    },
-    {
-      "slug": "linux-on-mlogv32-730944",
-      "name": "Linux on mlogv32",
-      "author": "Iliary",
-      "description": "This schematic contains a fully functional 32-bit RISC-V emulator that runs Linux.\n\nIn this configuration, it has 16 MiB of ROM, 14 MiB of RAM, a 70x38 character text-only display, a keyboard (sortKB), and four 16550A UART ports (though only one is currently accessible from Linux).\n\nTo use, simply build the schematic, wait a few seconds to let all of the processors initialize, then turn on the switch labeled POWER_SWITCH. Log in with the username root. Set your FPS limit to 60 for best results.\n\nOn my machine, it takes about 8 minutes from power on to the login prompt, and the game runs at ~10 FPS when the CPU is not idle. The filesystem is read-only (stored in ROM via cramfs), so /tmp is the only place where you can create files. Also, the display doesn't support escape codes, so backspace and color codes will look weird.\n\nRequires b149.",
-      "labels": [],
-      "tags": [
-        "运输"
-      ],
-      "category": "distribution",
-      "category_label": "运输",
-      "requirements": [],
-      "power_balance": null,
-      "game_version": "",
-      "width": 64,
-      "height": 64,
-      "tiles": 3643,
-      "logic_blocks": 3354,
-      "logic_lines": 2251980,
-      "blocks": [
-        {
-          "block": "micro-processor",
-          "count": 2841
-        },
-        {
-          "block": "world-processor",
-          "count": 513
-        },
-        {
-          "block": "tile-logic-display",
-          "count": 256
-        },
-        {
-          "block": "sorter",
-          "count": 11
-        },
-        {
-          "block": "message",
-          "count": 10
-        },
-        {
-          "block": "memory-bank",
-          "count": 4
-        },
-        {
-          "block": "switch",
-          "count": 4
-        },
-        {
-          "block": "memory-cell",
-          "count": 3
-        }
-      ],
-      "sha256": "51657a3333b102d0",
-      "chars": 21723012,
-      "has_preview": true,
-      "created": "2026-06-12",
-      "updated": "2026-06-12",
-      "file": "data/linux-on-mlogv32-730944/blueprint.txt",
-      "preview": "data/linux-on-mlogv32-730944/preview.png",
-      "source": "blueprints/linux-on-mlogv32-730944/blueprint.txt",
-      "source_preview": "blueprints/linux-on-mlogv32-730944/preview.png"
     },
     {
       "slug": "clean-energy-malign-db2ae3",

@@ -35,6 +35,8 @@ import preview as preview_mod  # noqa: E402
 ROOT = Path(__file__).resolve().parent.parent
 BLUEPRINT_DIR = ROOT / "blueprints"
 SIZES_PATH = Path(__file__).resolve().parent / "data" / "block_sizes.json"
+# 超过这个体积的 .msch 直接丢弃（当前最大的一张是 21 MB 的像素画）
+MAX_SCHEMATIC_BYTES = 20 * 1024 * 1024
 
 # content tags -------------------------------------------------------------
 # 标签一律用游戏内的建筑分类（炮塔/生产/运输/流体/电力/防御/制造/单位/功能），
@@ -254,6 +256,12 @@ def main() -> int:
         print(f"error: {src} is not a folder", file=sys.stderr)
         return 2
     files = sorted(p for p in src.iterdir() if p.suffix.lower() == ".msch" and p.is_file())
+    # 超过 20 MB 的蓝图直接丢弃：仓库体积和预览渲染都吃不消
+    oversized = [p for p in files if p.stat().st_size > MAX_SCHEMATIC_BYTES]
+    if oversized:
+        for p in oversized:
+            print(f"skip oversized ({p.stat().st_size / 1048576:.1f} MiB): {p.name}")
+        files = [p for p in files if p.stat().st_size <= MAX_SCHEMATIC_BYTES]
     if args.limit:
         files = files[:args.limit]
     if not files:

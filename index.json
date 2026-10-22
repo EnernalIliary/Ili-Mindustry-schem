@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-10-22T11:48:38Z",
+  "generated_at": "2026-10-22T11:56:33Z",
   "repo": "https://github.com/EnernalIliary/Ili-Mindustry-schem",
-  "count": 674,
+  "count": 673,
   "tags": [
     {
       "name": "运输",
@@ -21,7 +21,7 @@
     },
     {
       "name": "其他",
-      "count": 134
+      "count": 133
     },
     {
       "name": "生产",
@@ -68,7 +68,7 @@
     {
       "key": "其他",
       "name": "其他",
-      "count": 134
+      "count": 133
     },
     {
       "key": "production",
@@ -98,7 +98,7 @@
   ],
   "logic": {
     "max_lines": 2251980,
-    "with_logic": 460
+    "with_logic": 459
   },
   "blueprints": [
     {
@@ -17573,46 +17573,6 @@
       "preview": "data/bp-401f51/preview.png",
       "source": "blueprints/bp-401f51/blueprint.txt",
       "source_preview": "blueprints/bp-401f51/preview.png"
-    },
-    {
-      "slug": "bp-704957",
-      "name": "我女朋友最可爱",
-      "author": "Iliary",
-      "description": "NPY真可爱",
-      "tags": [
-        "其他"
-      ],
-      "category": "other",
-      "category_label": "",
-      "game_version": "",
-      "width": 16,
-      "height": 21,
-      "tiles": 336,
-      "logic_blocks": 156,
-      "logic_lines": 154653,
-      "blocks": [
-        {
-          "block": "tile-logic-display",
-          "count": 176
-        },
-        {
-          "block": "micro-processor",
-          "count": 156
-        },
-        {
-          "block": "message",
-          "count": 4
-        }
-      ],
-      "sha256": "8922003161faa3fd",
-      "chars": 740124,
-      "has_preview": true,
-      "created": "2026-10-18",
-      "updated": "2026-10-18",
-      "file": "data/bp-704957/blueprint.txt",
-      "preview": "data/bp-704957/preview.png",
-      "source": "blueprints/bp-704957/blueprint.txt",
-      "source_preview": "blueprints/bp-704957/preview.png"
     },
     {
       "slug": "bp-60a67e",

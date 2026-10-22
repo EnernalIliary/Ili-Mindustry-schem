@@ -117,6 +117,9 @@ def collect(folder: Path) -> dict:
     description = str(meta["description"]).strip()
     tags, category = category_tags.blueprint_tags(sch)
     _, labels = category_tags._tables()
+    if not tags:
+        # 全是模组方块、游戏内分类表里查不到的蓝图，归到「其他」，页面上不至于没有标签。
+        tags, category = ["其他"], "other"
 
     return {
         "slug": slug,

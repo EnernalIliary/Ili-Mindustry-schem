@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-22T11:41:07Z",
+  "generated_at": "2026-10-22T11:44:34Z",
   "repo": "",
   "count": 674,
   "tags": [
@@ -18,6 +18,10 @@
     {
       "name": "流体",
       "count": 242
+    },
+    {
+      "name": "其他",
+      "count": 134
     },
     {
       "name": "生产",
@@ -60,6 +64,11 @@
       "key": "liquid",
       "name": "流体",
       "count": 242
+    },
+    {
+      "key": "其他",
+      "name": "其他",
+      "count": 134
     },
     {
       "key": "production",
@@ -149,9 +158,11 @@
       "name": "序切着陆控制",
       "author": "Iliary",
       "description": "-*-ILI序切着陆控制-*-\n着陆台冷却完成后按照核心资源最小量到最大量的顺序切换着陆物品,用于在战役中跑满着陆运力",
-      "tags": [],
-      "category": "logic",
-      "category_label": "逻辑",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
+      "category_label": "",
       "game_version": "",
       "width": 1,
       "height": 2,
@@ -1757,9 +1768,11 @@
       "name": "雷达索敌重置",
       "author": "Iliary",
       "description": "1×1，1 个方块，逻辑 5 行。从游戏内蓝图导入。",
-      "tags": [],
-      "category": "logic",
-      "category_label": "逻辑",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
+      "category_label": "",
       "game_version": "",
       "width": 1,
       "height": 1,
@@ -1787,9 +1800,11 @@
       "name": "雷光增程",
       "author": "Iliary",
       "description": "2×2，1 个方块，逻辑 38 行。从游戏内蓝图导入。",
-      "tags": [],
-      "category": "logic",
-      "category_label": "逻辑",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
+      "category_label": "",
       "game_version": "",
       "width": 2,
       "height": 2,
@@ -1817,9 +1832,11 @@
       "name": "雪风涩图2",
       "author": "Iliary",
       "description": "26×32，208 个方块，逻辑 0 行。从游戏内蓝图导入。",
-      "tags": [],
-      "category": "logic",
-      "category_label": "逻辑",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
+      "category_label": "",
       "game_version": "",
       "width": 26,
       "height": 32,
@@ -1847,9 +1864,11 @@
       "name": "集体炮塔集火控制逻辑 v1.5",
       "author": "Iliary",
       "description": "2×3，3 个方块，逻辑 47 行。从游戏内蓝图导入。",
-      "tags": [],
-      "category": "logic",
-      "category_label": "逻辑",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
+      "category_label": "",
       "game_version": "",
       "width": 2,
       "height": 3,
@@ -2039,9 +2058,11 @@
       "name": "错误",
       "author": "Iliary",
       "description": "8×8，29 个方块，逻辑 349 行。从游戏内蓝图导入。",
-      "tags": [],
-      "category": "logic",
-      "category_label": "逻辑",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
+      "category_label": "",
       "game_version": "",
       "width": 8,
       "height": 8,
@@ -2073,9 +2094,11 @@
       "name": "锁钍反防炸",
       "author": "Iliary",
       "description": "2×2，1 个方块，逻辑 8 行。从游戏内蓝图导入。",
-      "tags": [],
-      "category": "logic",
-      "category_label": "逻辑",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
+      "category_label": "",
       "game_version": "",
       "width": 2,
       "height": 2,
@@ -2287,9 +2310,11 @@
       "name": "钍热逻辑",
       "author": "Iliary",
       "description": "1×1，1 个方块，逻辑 8 行。从游戏内蓝图导入。",
-      "tags": [],
-      "category": "logic",
-      "category_label": "逻辑",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
+      "category_label": "",
       "game_version": "",
       "width": 1,
       "height": 1,
@@ -2591,9 +2616,11 @@
       "name": "逻辑禁用",
       "author": "Iliary",
       "description": "1×1，1 个方块，逻辑 4 行。从游戏内蓝图导入。",
-      "tags": [],
-      "category": "logic",
-      "category_label": "逻辑",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
+      "category_label": "",
       "game_version": "",
       "width": 1,
       "height": 1,
@@ -2621,9 +2648,11 @@
       "name": "通用资源保护逻辑",
       "author": "Iliary",
       "description": "[blue]I[#8abcd1]L[#654321]I[highlight]通用资源保护逻辑[white]\nv1.3\n仅可在V8及以上版本使用\n\n[#8abcd1]链接建筑，激活保护![]\n\n逻辑内署名，可拆除此信息板。\n逻辑内更改上下限。默认下限1k，上限95%.\n\n逻辑锁定到需要资源保护的建筑，链接到的建筑物品容量大于等于300被视为核心。\n\n如果没有链接核心。\n只要有任意可被逻辑控制的单位，此逻辑就可锁定核心生效\n\n支持S/E星工厂、兵厂（及以上E仅支持t4以下)、布热&氰合成机、热量反应堆、矿渣离心机，不支持空装卸器控制。\n\n链接到大硅厂默认检测煤沙铅，链接分离解离无效，爆厂只有满停。S星t1兵厂只在缺硅时停用，其它兵厂全检测。\n\nBy - [blue]Ili[#8abcd1]ary[#654321]艾铭[red]",
-      "tags": [],
-      "category": "logic",
-      "category_label": "逻辑",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
+      "category_label": "",
       "game_version": "",
       "width": 1,
       "height": 2,
@@ -2751,9 +2780,11 @@
       "name": "通用搬运",
       "author": "Iliary",
       "description": "2×2，1 个方块，逻辑 190 行。从游戏内蓝图导入。",
-      "tags": [],
-      "category": "logic",
-      "category_label": "逻辑",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
+      "category_label": "",
       "game_version": "",
       "width": 2,
       "height": 2,
@@ -3030,9 +3061,11 @@
       "name": "进度条",
       "author": "Iliary",
       "description": "1×4，4 个方块，逻辑 29 行。从游戏内蓝图导入。",
-      "tags": [],
-      "category": "logic",
-      "category_label": "逻辑",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
+      "category_label": "",
       "game_version": "",
       "width": 1,
       "height": 4,
@@ -3188,9 +3221,11 @@
       "name": "转圈圈替换钍反炸逻辑",
       "author": "Iliary",
       "description": "1×1，1 个方块，逻辑 64 行。从游戏内蓝图导入。",
-      "tags": [],
-      "category": "logic",
-      "category_label": "逻辑",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
+      "category_label": "",
       "game_version": "",
       "width": 1,
       "height": 1,
@@ -5558,9 +5593,11 @@
       "name": "负言花蕾",
       "author": "Iliary",
       "description": "1×1，1 个方块。从游戏内蓝图导入。",
-      "tags": [],
-      "category": "logic",
-      "category_label": "逻辑",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
+      "category_label": "",
       "game_version": "",
       "width": 1,
       "height": 1,
@@ -5588,9 +5625,11 @@
       "name": "调和着陆控制逻辑列表",
       "author": "Iliary",
       "description": "2×3，2 个方块，逻辑 159 行。从游戏内蓝图导入。",
-      "tags": [],
-      "category": "logic",
-      "category_label": "逻辑",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
+      "category_label": "",
       "game_version": "",
       "width": 2,
       "height": 3,
@@ -5622,9 +5661,11 @@
       "name": "调和着陆控制逻辑",
       "author": "Iliary",
       "description": "2×3，2 个方块，逻辑 141 行。从游戏内蓝图导入。",
-      "tags": [],
-      "category": "logic",
-      "category_label": "逻辑",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
+      "category_label": "",
       "game_version": "",
       "width": 2,
       "height": 3,
@@ -5753,9 +5794,11 @@
       "name": "触控矿机",
       "author": "Iliary",
       "description": "12×6，13 个方块，逻辑 963 行。从游戏内蓝图导入。",
-      "tags": [],
-      "category": "logic",
-      "category_label": "逻辑",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
+      "category_label": "",
       "game_version": "",
       "width": 12,
       "height": 6,
@@ -5976,9 +6019,11 @@
       "name": "融合多并行矿机算元",
       "author": "Iliary",
       "description": "1×1，1 个方块，逻辑 27 行。从游戏内蓝图导入。",
-      "tags": [],
-      "category": "logic",
-      "category_label": "逻辑",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
+      "category_label": "",
       "game_version": "",
       "width": 1,
       "height": 1,
@@ -6006,9 +6051,11 @@
       "name": "融合多并行矿机主机",
       "author": "Iliary",
       "description": "1×2，2 个方块，逻辑 116 行。从游戏内蓝图导入。",
-      "tags": [],
-      "category": "logic",
-      "category_label": "逻辑",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
+      "category_label": "",
       "game_version": "",
       "width": 1,
       "height": 2,
@@ -6076,9 +6123,11 @@
       "name": "蓝瑟矢量火控",
       "author": "Iliary",
       "description": "1×1，1 个方块，逻辑 54 行。从游戏内蓝图导入。",
-      "tags": [],
-      "category": "logic",
-      "category_label": "逻辑",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
+      "category_label": "",
       "game_version": "",
       "width": 1,
       "height": 1,
@@ -6106,9 +6155,11 @@
       "name": "蓝瑟火控（橘子）",
       "author": "Iliary",
       "description": "2×2，1 个方块，逻辑 18 行。从游戏内蓝图导入。",
-      "tags": [],
-      "category": "logic",
-      "category_label": "逻辑",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
+      "category_label": "",
       "game_version": "",
       "width": 2,
       "height": 2,
@@ -6136,9 +6187,11 @@
       "name": "蓝瑟火控v1.5",
       "author": "Iliary",
       "description": "3×2，3 个方块，逻辑 208 行。从游戏内蓝图导入。",
-      "tags": [],
-      "category": "logic",
-      "category_label": "逻辑",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
+      "category_label": "",
       "game_version": "",
       "width": 3,
       "height": 2,
@@ -6924,9 +6977,11 @@
       "name": "菜单",
       "author": "Iliary",
       "description": "2×1，4 个方块，逻辑 341 行。从游戏内蓝图导入。",
-      "tags": [],
-      "category": "logic",
-      "category_label": "逻辑",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
+      "category_label": "",
       "game_version": "",
       "width": 2,
       "height": 1,
@@ -7354,9 +7409,11 @@
       "name": "自动重构逻辑;PayEnter逻辑;升级逻辑",
       "author": "Iliary",
       "description": "鸽派(删除第6，7，8行即可变成鹰派)\n无flag自动重构逻辑\n仅支持空军空辅爬爬，只能绑定到重构厂，在逻辑内部设置重构单位，在工厂建造时移动单位，工厂停止运行时释放单位。\n不会跑NULL",
-      "tags": [],
-      "category": "logic",
-      "category_label": "逻辑",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
+      "category_label": "",
       "game_version": "",
       "width": 1,
       "height": 1,
@@ -7636,9 +7693,11 @@
       "name": "群控ILI海啸横扫逻辑",
       "author": "Iliary",
       "description": "提高海啸弹药利用率，此为群控逻辑，最大控制8个海啸，小逻辑单控运行效率低但仍可用。",
-      "tags": [],
-      "category": "logic",
-      "category_label": "逻辑",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
+      "category_label": "",
       "game_version": "",
       "width": 2,
       "height": 2,
@@ -7973,9 +8032,11 @@
       "name": "精确无序亏电起冲逻辑",
       "author": "Iliary",
       "description": "逻辑内查看证明过程。",
-      "tags": [],
-      "category": "logic",
-      "category_label": "逻辑",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
+      "category_label": "",
       "game_version": "",
       "width": 2,
       "height": 2,
@@ -8187,9 +8248,11 @@
       "name": "简化无序亏电启冲",
       "author": "Iliary",
       "description": "1×2，2 个方块，逻辑 26 行。从游戏内蓝图导入。",
-      "tags": [],
-      "category": "logic",
-      "category_label": "逻辑",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
+      "category_label": "",
       "game_version": "",
       "width": 1,
       "height": 2,
@@ -8257,9 +8320,11 @@
       "name": "笨鸟先飞",
       "author": "Iliary",
       "description": "3×5，4 个方块，逻辑 71 行。从游戏内蓝图导入。",
-      "tags": [],
-      "category": "logic",
-      "category_label": "逻辑",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
+      "category_label": "",
       "game_version": "",
       "width": 3,
       "height": 5,
@@ -8934,9 +8999,11 @@
       "name": "着陆板控制逻辑v2.1",
       "author": "Iliary",
       "description": "3×1，3 个方块，逻辑 134 行。从游戏内蓝图导入。",
-      "tags": [],
-      "category": "logic",
-      "category_label": "逻辑",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
+      "category_label": "",
       "game_version": "",
       "width": 3,
       "height": 1,
@@ -8972,9 +9039,11 @@
       "name": "着陆板控制逻辑v2.0",
       "author": "Iliary",
       "description": "3×1，3 个方块，逻辑 122 行。从游戏内蓝图导入。",
-      "tags": [],
-      "category": "logic",
-      "category_label": "逻辑",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
+      "category_label": "",
       "game_version": "",
       "width": 3,
       "height": 1,
@@ -10031,9 +10100,11 @@
       "name": "画板 1.png",
       "author": "Iliary",
       "description": "30×32，240 个方块，逻辑 0 行。从游戏内蓝图导入。",
-      "tags": [],
-      "category": "logic",
-      "category_label": "逻辑",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
+      "category_label": "",
       "game_version": "",
       "width": 30,
       "height": 32,
@@ -10401,9 +10472,11 @@
       "name": "狐狐",
       "author": "Iliary",
       "description": "16×32，128 个方块，逻辑 0 行。从游戏内蓝图导入。",
-      "tags": [],
-      "category": "logic",
-      "category_label": "逻辑",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
+      "category_label": "",
       "game_version": "",
       "width": 16,
       "height": 32,
@@ -10673,9 +10746,11 @@
       "name": "热自启防爆逻辑",
       "author": "Iliary",
       "description": "1×1，1 个方块，逻辑 14 行。从游戏内蓝图导入。",
-      "tags": [],
-      "category": "logic",
-      "category_label": "逻辑",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
+      "category_label": "",
       "game_version": "",
       "width": 1,
       "height": 1,
@@ -11056,9 +11131,11 @@
       "name": "海军整队",
       "author": "Iliary",
       "description": "3×4，3 个方块，逻辑 84 行。从游戏内蓝图导入。",
-      "tags": [],
-      "category": "logic",
-      "category_label": "逻辑",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
+      "category_label": "",
       "game_version": "",
       "width": 3,
       "height": 4,
@@ -11216,9 +11293,11 @@
       "name": "注释版",
       "author": "Iliary",
       "description": "5×5，25 个方块。从游戏内蓝图导入。",
-      "tags": [],
-      "category": "logic",
-      "category_label": "逻辑",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
+      "category_label": "",
       "game_version": "",
       "width": 5,
       "height": 5,
@@ -12605,9 +12684,11 @@
       "name": "死星自动进攻",
       "author": "Iliary",
       "description": "控制死星卡距离攻击死星射程范围内的敌人",
-      "tags": [],
-      "category": "logic",
-      "category_label": "逻辑",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
+      "category_label": "",
       "game_version": "",
       "width": 3,
       "height": 3,
@@ -13371,9 +13452,11 @@
       "name": "核弹发射井",
       "author": "Iliary",
       "description": "2×1，2 个方块，逻辑 143 行。从游戏内蓝图导入。",
-      "tags": [],
-      "category": "logic",
-      "category_label": "逻辑",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
+      "category_label": "",
       "game_version": "",
       "width": 2,
       "height": 1,
@@ -13531,9 +13614,11 @@
       "name": "标注模版",
       "author": "Iliary",
       "description": "1×1，1 个方块，逻辑 67 行。从游戏内蓝图导入。",
-      "tags": [],
-      "category": "logic",
-      "category_label": "逻辑",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
+      "category_label": "",
       "game_version": "",
       "width": 1,
       "height": 1,
@@ -13935,9 +14020,11 @@
       "name": "杂鱼",
       "author": "Iliary",
       "description": "28×26，182 个方块，逻辑 0 行。从游戏内蓝图导入。",
-      "tags": [],
-      "category": "logic",
-      "category_label": "逻辑",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
+      "category_label": "",
       "game_version": "",
       "width": 28,
       "height": 26,
@@ -14207,9 +14294,11 @@
       "name": "最大距离",
       "author": "Iliary",
       "description": "2×2，1 个方块，逻辑 15 行。从游戏内蓝图导入。",
-      "tags": [],
-      "category": "logic",
-      "category_label": "逻辑",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
+      "category_label": "",
       "game_version": "",
       "width": 2,
       "height": 2,
@@ -14237,9 +14326,11 @@
       "name": "更强的病毒",
       "author": "Iliary",
       "description": "1×1，1 个方块，逻辑 16 行。从游戏内蓝图导入。",
-      "tags": [],
-      "category": "logic",
-      "category_label": "逻辑",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
+      "category_label": "",
       "game_version": "",
       "width": 1,
       "height": 1,
@@ -14370,9 +14461,11 @@
       "name": "时间之锁",
       "author": "Iliary",
       "description": "1×1，1 个方块，逻辑 102 行。从游戏内蓝图导入。",
-      "tags": [],
-      "category": "logic",
-      "category_label": "逻辑",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
+      "category_label": "",
       "game_version": "",
       "width": 1,
       "height": 1,
@@ -15808,9 +15901,11 @@
       "name": "无序亏电轮冲逻辑v3.1",
       "author": "Iliary",
       "description": "1×1，1 个方块，逻辑 163 行。从游戏内蓝图导入。",
-      "tags": [],
-      "category": "logic",
-      "category_label": "逻辑",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
+      "category_label": "",
       "game_version": "",
       "width": 1,
       "height": 1,
@@ -15838,9 +15933,11 @@
       "name": "无序亏电轮冲逻辑v3.0",
       "author": "Iliary",
       "description": "1×1，1 个方块，逻辑 161 行。从游戏内蓝图导入。",
-      "tags": [],
-      "category": "logic",
-      "category_label": "逻辑",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
+      "category_label": "",
       "game_version": "",
       "width": 1,
       "height": 1,
@@ -15868,9 +15965,11 @@
       "name": "无序亏电轮冲逻辑v2.6",
       "author": "Iliary",
       "description": "1×1，1 个方块，逻辑 153 行。从游戏内蓝图导入。",
-      "tags": [],
-      "category": "logic",
-      "category_label": "逻辑",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
+      "category_label": "",
       "game_version": "",
       "width": 1,
       "height": 1,
@@ -15898,9 +15997,11 @@
       "name": "无序亏电轮冲逻辑v2.5",
       "author": "Iliary",
       "description": "1×1，1 个方块，逻辑 138 行。从游戏内蓝图导入。",
-      "tags": [],
-      "category": "logic",
-      "category_label": "逻辑",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
+      "category_label": "",
       "game_version": "",
       "width": 1,
       "height": 1,
@@ -15928,9 +16029,11 @@
       "name": "无序亏电起冲重置版",
       "author": "Iliary",
       "description": "1×1，1 个方块，逻辑 62 行。从游戏内蓝图导入。",
-      "tags": [],
-      "category": "logic",
-      "category_label": "逻辑",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
+      "category_label": "",
       "game_version": "",
       "width": 1,
       "height": 1,
@@ -16207,9 +16310,11 @@
       "name": "整合逻辑",
       "author": "Iliary",
       "description": "1×2，2 个方块，逻辑 480 行。从游戏内蓝图导入。",
-      "tags": [],
-      "category": "logic",
-      "category_label": "逻辑",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
+      "category_label": "",
       "game_version": "",
       "width": 1,
       "height": 2,
@@ -16241,9 +16346,11 @@
       "name": "放置任意图像",
       "author": "Iliary",
       "description": "1×1，1 个方块，逻辑 7 行。从游戏内蓝图导入。",
-      "tags": [],
-      "category": "logic",
-      "category_label": "逻辑",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
+      "category_label": "",
       "game_version": "",
       "width": 1,
       "height": 1,
@@ -16918,9 +17025,11 @@
       "name": "换队伍器",
       "author": "Iliary",
       "description": "6×2，12 个方块，逻辑 498 行。从游戏内蓝图导入。",
-      "tags": [],
-      "category": "logic",
-      "category_label": "逻辑",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
+      "category_label": "",
       "game_version": "",
       "width": 6,
       "height": 2,
@@ -17470,9 +17579,11 @@
       "name": "我女朋友最可爱",
       "author": "Iliary",
       "description": "NPY真可爱",
-      "tags": [],
-      "category": "logic",
-      "category_label": "逻辑",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
+      "category_label": "",
       "game_version": "",
       "width": 16,
       "height": 21,
@@ -17508,9 +17619,11 @@
       "name": "快速响应钍反防爆",
       "author": "Iliary",
       "description": "1×1，1 个方块，逻辑 19 行。从游戏内蓝图导入。",
-      "tags": [],
-      "category": "logic",
-      "category_label": "逻辑",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
+      "category_label": "",
       "game_version": "",
       "width": 1,
       "height": 1,
@@ -17538,9 +17651,11 @@
       "name": "微型矿机",
       "author": "Iliary",
       "description": "6×1，6 个方块，逻辑 965 行。从游戏内蓝图导入。",
-      "tags": [],
-      "category": "logic",
-      "category_label": "逻辑",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
+      "category_label": "",
       "game_version": "",
       "width": 6,
       "height": 1,
@@ -17632,9 +17747,11 @@
       "name": "开关",
       "author": "Iliary",
       "description": "2×1，2 个方块，逻辑 6 行。从游戏内蓝图导入。",
-      "tags": [],
-      "category": "logic",
-      "category_label": "逻辑",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
+      "category_label": "",
       "game_version": "",
       "width": 2,
       "height": 1,
@@ -17666,9 +17783,11 @@
       "name": "延迟关盾2.0",
       "author": "Iliary",
       "description": "2×2，1 个方块，逻辑 40 行。从游戏内蓝图导入。",
-      "tags": [],
-      "category": "logic",
-      "category_label": "逻辑",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
+      "category_label": "",
       "game_version": "",
       "width": 2,
       "height": 2,
@@ -17696,9 +17815,11 @@
       "name": "延迟关盾",
       "author": "Iliary",
       "description": "2×2，1 个方块，逻辑 13 行。从游戏内蓝图导入。",
-      "tags": [],
-      "category": "logic",
-      "category_label": "逻辑",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
+      "category_label": "",
       "game_version": "",
       "width": 2,
       "height": 2,
@@ -18103,9 +18224,11 @@
       "name": "幻象",
       "author": "Iliary",
       "description": "4×4，7 个方块，逻辑 5351 行。从游戏内蓝图导入。",
-      "tags": [],
-      "category": "logic",
-      "category_label": "逻辑",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
+      "category_label": "",
       "game_version": "",
       "width": 4,
       "height": 4,
@@ -18681,9 +18804,11 @@
       "name": "差扰引力弹弓",
       "author": "Iliary",
       "description": "2×2，1 个方块，逻辑 50 行。从游戏内蓝图导入。",
-      "tags": [],
-      "category": "logic",
-      "category_label": "逻辑",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
+      "category_label": "",
       "game_version": "",
       "width": 2,
       "height": 2,
@@ -18791,9 +18916,11 @@
       "name": "屏幕截图 2026-09-11 100435.png",
       "author": "Iliary",
       "description": "24×4，24 个方块，逻辑 0 行。从游戏内蓝图导入。",
-      "tags": [],
-      "category": "logic",
-      "category_label": "逻辑",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
+      "category_label": "",
       "game_version": "",
       "width": 24,
       "height": 4,
@@ -19622,9 +19749,11 @@
       "name": "容器滤过器",
       "author": "Iliary",
       "description": "1×1，1 个方块，逻辑 57 行。从游戏内蓝图导入。",
-      "tags": [],
-      "category": "logic",
-      "category_label": "逻辑",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
+      "category_label": "",
       "game_version": "",
       "width": 1,
       "height": 1,
@@ -19877,8 +20006,10 @@
       "name": "好猫",
       "author": "Iliary",
       "description": "42×42，1936 个方块。从游戏内蓝图导入。",
-      "tags": [],
-      "category": "",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
       "category_label": "",
       "game_version": "",
       "width": 42,
@@ -20376,9 +20507,11 @@
       "name": "多控v2",
       "author": "Iliary",
       "description": "1×1，1 个方块，逻辑 46 行。从游戏内蓝图导入。",
-      "tags": [],
-      "category": "logic",
-      "category_label": "逻辑",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
+      "category_label": "",
       "game_version": "",
       "width": 1,
       "height": 1,
@@ -20904,9 +21037,11 @@
       "name": "复制炸弹",
       "author": "Iliary",
       "description": "1×1，1 个方块，逻辑 14 行。从游戏内蓝图导入。",
-      "tags": [],
-      "category": "logic",
-      "category_label": "逻辑",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
+      "category_label": "",
       "game_version": "",
       "width": 1,
       "height": 1,
@@ -20997,9 +21132,11 @@
       "name": "堡垒自动进攻",
       "author": "Iliary",
       "description": "2×2，1 个方块，逻辑 53 行。从游戏内蓝图导入。",
-      "tags": [],
-      "category": "logic",
-      "category_label": "逻辑",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
+      "category_label": "",
       "game_version": "",
       "width": 2,
       "height": 2,
@@ -21191,9 +21328,11 @@
       "name": "地形生成",
       "author": "Iliary",
       "description": "6×2，7 个方块，逻辑 437 行。从游戏内蓝图导入。",
-      "tags": [],
-      "category": "logic",
-      "category_label": "逻辑",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
+      "category_label": "",
       "game_version": "",
       "width": 6,
       "height": 2,
@@ -21904,9 +22043,11 @@
       "name": "咕咕资源保护",
       "author": "Iliary",
       "description": "2×3，2 个方块，逻辑 111 行。从游戏内蓝图导入。",
-      "tags": [],
-      "category": "logic",
-      "category_label": "逻辑",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
+      "category_label": "",
       "game_version": "",
       "width": 2,
       "height": 3,
@@ -22575,9 +22716,11 @@
       "name": "吃吃B",
       "author": "Iliary",
       "description": "8×9，37 个方块，逻辑 35134 行。从游戏内蓝图导入。",
-      "tags": [],
-      "category": "logic",
-      "category_label": "逻辑",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
+      "category_label": "",
       "game_version": "",
       "width": 8,
       "height": 9,
@@ -23397,9 +23540,11 @@
       "name": "双控逻辑",
       "author": "Iliary",
       "description": "1×1，1 个方块，逻辑 33 行。从游戏内蓝图导入。",
-      "tags": [],
-      "category": "logic",
-      "category_label": "逻辑",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
+      "category_label": "",
       "game_version": "",
       "width": 1,
       "height": 1,
@@ -23480,9 +23625,11 @@
       "name": "厄兆群控逻辑v2.0",
       "author": "Iliary",
       "description": "1×1，1 个方块，逻辑 76 行。从游戏内蓝图导入。",
-      "tags": [],
-      "category": "logic",
-      "category_label": "逻辑",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
+      "category_label": "",
       "game_version": "",
       "width": 1,
       "height": 1,
@@ -23510,9 +23657,11 @@
       "name": "厄兆群控v2.0",
       "author": "Iliary",
       "description": "1×1，1 个方块，逻辑 162 行。从游戏内蓝图导入。",
-      "tags": [],
-      "category": "logic",
-      "category_label": "逻辑",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
+      "category_label": "",
       "game_version": "",
       "width": 1,
       "height": 1,
@@ -23540,9 +23689,11 @@
       "name": "厄兆群控v1.5稳定版",
       "author": "Iliary",
       "description": "2×2，1 个方块，逻辑 46 行。从游戏内蓝图导入。",
-      "tags": [],
-      "category": "logic",
-      "category_label": "逻辑",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
+      "category_label": "",
       "game_version": "",
       "width": 2,
       "height": 2,
@@ -23570,9 +23721,11 @@
       "name": "厄兆群控v1.5",
       "author": "Iliary",
       "description": "2×2，1 个方块，逻辑 36 行。从游戏内蓝图导入。",
-      "tags": [],
-      "category": "logic",
-      "category_label": "逻辑",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
+      "category_label": "",
       "game_version": "",
       "width": 2,
       "height": 2,
@@ -23600,9 +23753,11 @@
       "name": "厄兆群控v1.2",
       "author": "Iliary",
       "description": "2×2，1 个方块，逻辑 28 行。从游戏内蓝图导入。",
-      "tags": [],
-      "category": "logic",
-      "category_label": "逻辑",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
+      "category_label": "",
       "game_version": "",
       "width": 2,
       "height": 2,
@@ -23630,9 +23785,11 @@
       "name": "厄兆群控v1.1",
       "author": "Iliary",
       "description": "1×1，1 个方块，逻辑 28 行。从游戏内蓝图导入。",
-      "tags": [],
-      "category": "logic",
-      "category_label": "逻辑",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
+      "category_label": "",
       "game_version": "",
       "width": 1,
       "height": 1,
@@ -23660,9 +23817,11 @@
       "name": "厄兆群控v1.0",
       "author": "Iliary",
       "description": "1×1，1 个方块，逻辑 27 行。从游戏内蓝图导入。",
-      "tags": [],
-      "category": "logic",
-      "category_label": "逻辑",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
+      "category_label": "",
       "game_version": "",
       "width": 1,
       "height": 1,
@@ -23690,9 +23849,11 @@
       "name": "厄兆群控1.2",
       "author": "Iliary",
       "description": "1×1，1 个方块，逻辑 28 行。从游戏内蓝图导入。",
-      "tags": [],
-      "category": "logic",
-      "category_label": "逻辑",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
+      "category_label": "",
       "game_version": "",
       "width": 1,
       "height": 1,
@@ -24008,9 +24169,11 @@
       "name": "单位极限射程",
       "author": "Iliary",
       "description": "by:布丁酸奶呀\n手测给自己用的，并不是完全正确\n但用来给逻辑控距离填数值够用了",
-      "tags": [],
-      "category": "logic",
-      "category_label": "逻辑",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
+      "category_label": "",
       "game_version": "",
       "width": 3,
       "height": 1,
@@ -24428,9 +24591,11 @@
       "name": "副官系统",
       "author": "Iliary",
       "description": "4×1，4 个方块，逻辑 837 行。从游戏内蓝图导入。",
-      "tags": [],
-      "category": "logic",
-      "category_label": "逻辑",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
+      "category_label": "",
       "game_version": "",
       "width": 4,
       "height": 1,
@@ -24462,9 +24627,11 @@
       "name": "前线启停装置",
       "author": "Iliary",
       "description": "1×1，1 个方块，逻辑 8 行。从游戏内蓝图导入。",
-      "tags": [],
-      "category": "logic",
-      "category_label": "逻辑",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
+      "category_label": "",
       "game_version": "",
       "width": 1,
       "height": 1,
@@ -24662,9 +24829,11 @@
       "name": "分类器画在主视角显示器",
       "author": "Iliary",
       "description": "4×3，12 个方块，逻辑 168 行。从游戏内蓝图导入。",
-      "tags": [],
-      "category": "logic",
-      "category_label": "逻辑",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
+      "category_label": "",
       "game_version": "",
       "width": 4,
       "height": 3,
@@ -24704,9 +24873,11 @@
       "name": "出生雪风",
       "author": "Iliary",
       "description": "26×6，39 个方块，逻辑 0 行。从游戏内蓝图导入。",
-      "tags": [],
-      "category": "logic",
-      "category_label": "逻辑",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
+      "category_label": "",
       "game_version": "",
       "width": 26,
       "height": 6,
@@ -24734,9 +24905,11 @@
       "name": "冲反糖果逻辑/起冲备用电池逻辑",
       "author": "Iliary",
       "description": "冲反糖果逻辑\n\n如果链接到外部电网，会将电池充满后保存电量。\n\n隔离电网后此电池将自动放电以方便重启冲反。",
-      "tags": [],
-      "category": "logic",
-      "category_label": "逻辑",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
+      "category_label": "",
       "game_version": "",
       "width": 1,
       "height": 2,
@@ -25215,9 +25388,11 @@
       "name": "全图自动送布逻辑",
       "author": "Iliary",
       "description": "2×2，4 个方块，逻辑 148 行。从游戏内蓝图导入。",
-      "tags": [],
-      "category": "logic",
-      "category_label": "逻辑",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
+      "category_label": "",
       "game_version": "",
       "width": 2,
       "height": 2,
@@ -25312,9 +25487,11 @@
       "name": "先发制人核弹井世处",
       "author": "Iliary",
       "description": "核爆，爽",
-      "tags": [],
-      "category": "logic",
-      "category_label": "逻辑",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
+      "category_label": "",
       "game_version": "",
       "width": 2,
       "height": 2,
@@ -25346,9 +25523,11 @@
       "name": "修复调频器",
       "author": "Iliary",
       "description": "2×3，3 个方块，逻辑 19 行。从游戏内蓝图导入。",
-      "tags": [],
-      "category": "logic",
-      "category_label": "逻辑",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
+      "category_label": "",
       "game_version": "",
       "width": 2,
       "height": 3,
@@ -25384,9 +25563,11 @@
       "name": "你很会吗",
       "author": "Iliary",
       "description": "16×3，39 个方块，逻辑 6405 行。从游戏内蓝图导入。",
-      "tags": [],
-      "category": "logic",
-      "category_label": "逻辑",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
+      "category_label": "",
       "game_version": "",
       "width": 16,
       "height": 3,
@@ -26199,9 +26380,11 @@
       "name": "v3.7|Iliary辅助建筑控制逻辑",
       "author": "Iliary",
       "description": "2×2，1 个方块，逻辑 149 行。从游戏内蓝图导入。",
-      "tags": [],
-      "category": "logic",
-      "category_label": "逻辑",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
+      "category_label": "",
       "game_version": "",
       "width": 2,
       "height": 2,
@@ -26229,9 +26412,11 @@
       "name": "v3.6|Iliary辅助建筑控制逻辑",
       "author": "Iliary",
       "description": "2×2，1 个方块，逻辑 137 行。从游戏内蓝图导入。",
-      "tags": [],
-      "category": "logic",
-      "category_label": "逻辑",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
+      "category_label": "",
       "game_version": "",
       "width": 2,
       "height": 2,
@@ -26259,9 +26444,11 @@
       "name": "v3.0|Iliary辅助建筑控制逻辑",
       "author": "Iliary",
       "description": "2×2，1 个方块，逻辑 44 行。从游戏内蓝图导入。",
-      "tags": [],
-      "category": "logic",
-      "category_label": "逻辑",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
+      "category_label": "",
       "game_version": "",
       "width": 2,
       "height": 2,
@@ -26289,9 +26476,11 @@
       "name": "v1.1|防点火、土豆逻辑",
       "author": "Iliary",
       "description": "2×2，1 个方块，逻辑 89 行。从游戏内蓝图导入。",
-      "tags": [],
-      "category": "logic",
-      "category_label": "逻辑",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
+      "category_label": "",
       "game_version": "",
       "width": 2,
       "height": 2,
@@ -26596,9 +26785,11 @@
       "name": "pic穹s",
       "author": "Iliary",
       "description": "7×14，23 个方块，逻辑 20198 行。从游戏内蓝图导入。",
-      "tags": [],
-      "category": "logic",
-      "category_label": "逻辑",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
+      "category_label": "",
       "game_version": "",
       "width": 7,
       "height": 14,
@@ -26630,9 +26821,11 @@
       "name": "pic幻象",
       "author": "Iliary",
       "description": "幻象",
-      "tags": [],
-      "category": "logic",
-      "category_label": "逻辑",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
+      "category_label": "",
       "game_version": "",
       "width": 8,
       "height": 9,
@@ -26720,9 +26913,11 @@
       "name": "pic天女目瑛s",
       "author": "Iliary",
       "description": "20×15，86 个方块，逻辑 76638 行。从游戏内蓝图导入。",
-      "tags": [],
-      "category": "logic",
-      "category_label": "逻辑",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
+      "category_label": "",
       "game_version": "",
       "width": 20,
       "height": 15,
@@ -26754,9 +26949,11 @@
       "name": "pic大型幻象",
       "author": "Iliary",
       "description": "24×25，258 个方块，逻辑 242555 行。从游戏内蓝图导入。",
-      "tags": [],
-      "category": "logic",
-      "category_label": "逻辑",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
+      "category_label": "",
       "game_version": "",
       "width": 24,
       "height": 25,
@@ -26832,9 +27029,11 @@
       "name": "picq穹睡",
       "author": "Iliary",
       "description": "sora",
-      "tags": [],
-      "category": "logic",
-      "category_label": "逻辑",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
+      "category_label": "",
       "game_version": "",
       "width": 13,
       "height": 7,
@@ -26866,9 +27065,11 @@
       "name": "picDoraly",
       "author": "Iliary",
       "description": "4×4，7 个方块，逻辑 5532 行。从游戏内蓝图导入。",
-      "tags": [],
-      "category": "logic",
-      "category_label": "逻辑",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
+      "category_label": "",
       "game_version": "",
       "width": 4,
       "height": 4,
@@ -26900,9 +27101,11 @@
       "name": "pic",
       "author": "Iliary",
       "description": "21×27，101 个方块，逻辑 80913 行。从游戏内蓝图导入。",
-      "tags": [],
-      "category": "logic",
-      "category_label": "逻辑",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
+      "category_label": "",
       "game_version": "",
       "width": 21,
       "height": 27,
@@ -27058,9 +27261,11 @@
       "name": "intel corei3",
       "author": "Iliary",
       "description": "4×4，8 个方块，逻辑 6179 行。从游戏内蓝图导入。",
-      "tags": [],
-      "category": "logic",
-      "category_label": "逻辑",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
+      "category_label": "",
       "game_version": "",
       "width": 4,
       "height": 4,
@@ -27155,9 +27360,11 @@
       "name": "audit-f2a6e68568",
       "author": "Iliary",
       "description": "jump-to-jump-chain @ mindustrytop-25774:343,102 L8",
-      "tags": [],
-      "category": "logic",
-      "category_label": "逻辑",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
+      "category_label": "",
       "game_version": "",
       "width": 1,
       "height": 1,
@@ -27379,9 +27586,11 @@
       "name": "[yellow]智卸[red]最终版[white]by [cyan]Nihil[white]",
       "author": "Iliary",
       "description": "2×3，2 个方块，逻辑 735 行。从游戏内蓝图导入。",
-      "tags": [],
-      "category": "logic",
-      "category_label": "逻辑",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
+      "category_label": "",
       "game_version": "",
       "width": 2,
       "height": 3,
@@ -27838,9 +28047,11 @@
       "name": "[#ffff00]水滴网0.9.3+公测版",
       "author": "Iliary",
       "description": "3×1，3 个方块，逻辑 184 行。从游戏内蓝图导入。",
-      "tags": [],
-      "category": "logic",
-      "category_label": "逻辑",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
+      "category_label": "",
       "game_version": "",
       "width": 3,
       "height": 1,
@@ -28245,9 +28456,11 @@
       "name": "Yumu.png",
       "author": "Iliary",
       "description": "6×6，9 个方块，逻辑 0 行。从游戏内蓝图导入。",
-      "tags": [],
-      "category": "logic",
-      "category_label": "逻辑",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
+      "category_label": "",
       "game_version": "",
       "width": 6,
       "height": 6,
@@ -28275,9 +28488,11 @@
       "name": "V3.2|蓝瑟火控149b",
       "author": "Iliary",
       "description": "2×2，1 个方块，逻辑 35 行。从游戏内蓝图导入。",
-      "tags": [],
-      "category": "logic",
-      "category_label": "逻辑",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
+      "category_label": "",
       "game_version": "",
       "width": 2,
       "height": 2,
@@ -28305,9 +28520,11 @@
       "name": "V3.1|蓝瑟火控149b",
       "author": "Iliary",
       "description": "2×2，1 个方块，逻辑 34 行。从游戏内蓝图导入。",
-      "tags": [],
-      "category": "logic",
-      "category_label": "逻辑",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
+      "category_label": "",
       "game_version": "",
       "width": 2,
       "height": 2,
@@ -28585,9 +28802,11 @@
       "name": "MCV逻辑开发版v2.0",
       "author": "Iliary",
       "description": "MCV(移动核心,Mobile Core Vericle)\n世界处理器开发版v2.0\n\n对核心长按就可收起核心为MCV，控制或指挥MCV攻击即可再次展开为核心。\n\n通过cangameover控制不会因为最后一个核心收起导致没有核心而GG。内存用于存储MCV核心内的物品。支持多队伍。\n[yellow]逻辑右侧两格是单位缓冲区，[red]运行时会清空逻辑右侧的方块。\n[lightgray]\nv1.5更新了坐标精确偏移，控制MCV将鼠标抵近MCV可以进行展开位置偏移。\n\nv1.8使用pinglocation收起MCV，优化了服务器的同步效果。\n\nv1.9允许暂存mod物品",
-      "tags": [],
-      "category": "logic",
-      "category_label": "逻辑",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
+      "category_label": "",
       "game_version": "",
       "width": 3,
       "height": 1,
@@ -28623,9 +28842,11 @@
       "name": "MCVE",
       "author": "Iliary",
       "description": "3×1，3 个方块，逻辑 287 行。从游戏内蓝图导入。",
-      "tags": [],
-      "category": "logic",
-      "category_label": "逻辑",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
+      "category_label": "",
       "game_version": "",
       "width": 3,
       "height": 1,
@@ -28723,9 +28944,11 @@
       "name": "Iliary蓝瑟火控149b V2.5d",
       "author": "Iliary",
       "description": "2×2，1 个方块，逻辑 23 行。从游戏内蓝图导入。",
-      "tags": [],
-      "category": "logic",
-      "category_label": "逻辑",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
+      "category_label": "",
       "game_version": "",
       "width": 2,
       "height": 2,
@@ -28816,9 +29039,11 @@
       "name": "IP：工位",
       "author": "Iliary",
       "description": "72×54，972 个方块，逻辑 0 行。从游戏内蓝图导入。",
-      "tags": [],
-      "category": "logic",
-      "category_label": "逻辑",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
+      "category_label": "",
       "game_version": "",
       "width": 72,
       "height": 54,
@@ -28846,9 +29071,11 @@
       "name": "IP:工位",
       "author": "Iliary",
       "description": "6×7，7 个方块，逻辑 5868 行。从游戏内蓝图导入。",
-      "tags": [],
-      "category": "logic",
-      "category_label": "逻辑",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
+      "category_label": "",
       "game_version": "",
       "width": 6,
       "height": 7,
@@ -29085,9 +29312,11 @@
       "name": "ILI集火逻辑(小)",
       "author": "Iliary",
       "description": "1×2，2 个方块，逻辑 278 行。从游戏内蓝图导入。",
-      "tags": [],
-      "category": "logic",
-      "category_label": "逻辑",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
+      "category_label": "",
       "game_version": "",
       "width": 1,
       "height": 2,
@@ -29119,9 +29348,11 @@
       "name": "ILI集火逻辑",
       "author": "Iliary",
       "description": "[blue]I[#8abcd1]L[#654321]I[highlight]集火逻辑\nv1.8\n[lightgray]\n快速响应集火+标点集火逻辑\n\n-快速响应集火\n1.附身被逻辑锁定的任意炮台即可控制所有炮台集火。\n2.若无人附身，此逻辑会自动集火攻击进入射程的敌方单位。\n3.控制大宗炮台时集火响应快。\n\n默认最大控制100个炮台。\n\n- 标点集火\n1.玩家进入炮台射程，[gold]对玩家自己标点[]就能绑定此玩家启用标点集火。\n2.标点除自己外的任意位置即可集火，一旦启用标点集火，绑定的玩家在任意位置任意标点都会响应集火，此时若有玩家控制炮台，标点集火会强行停止。\n3.再次标点自己关闭标点集火\n4.如果炮台不受标点控制或其他人想接手控制，再次ping自己即可。\n\nTips:无载荷的E核心机无法被检测集火\n\nby - [#8abcd1]Iliary",
-      "tags": [],
-      "category": "logic",
-      "category_label": "逻辑",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
+      "category_label": "",
       "game_version": "",
       "width": 2,
       "height": 3,
@@ -29529,9 +29760,11 @@
       "name": "ILI海啸横扫逻辑",
       "author": "Iliary",
       "description": "1×1，1 个方块，逻辑 28 行。从游戏内蓝图导入。",
-      "tags": [],
-      "category": "logic",
-      "category_label": "逻辑",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
+      "category_label": "",
       "game_version": "",
       "width": 1,
       "height": 1,
@@ -29559,9 +29792,11 @@
       "name": "ILI波浪海啸智能挂buff逻辑",
       "author": "Iliary",
       "description": "1×1，1 个方块，逻辑 22 行。从游戏内蓝图导入。",
-      "tags": [],
-      "category": "logic",
-      "category_label": "逻辑",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
+      "category_label": "",
       "game_version": "",
       "width": 1,
       "height": 1,
@@ -29925,9 +30160,11 @@
       "name": "ILI反病毒",
       "author": "Iliary",
       "description": "[blue]I[#8abcd1]L[#654321]I[highlight]测测Build反病毒[white]\n\n[gray]替换掉试图控制单位建造1*1建筑的逻辑\n由于Poly会自动重建，所以在Poly杀毒完成后会被此逻辑强制控制，开关用于解控\n\nAnti-Virus-logic Logic\n\nReplaces logic that attempts to control units into building 1×1 structures.\n\nSince Poly units automatically rebuild virious, they will be forcibly controlled by this logic after the cleanup is complete.\n\nThe switch can be used to release control.",
-      "tags": [],
-      "category": "logic",
-      "category_label": "逻辑",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
+      "category_label": "",
       "game_version": "",
       "width": 2,
       "height": 3,
@@ -30277,9 +30514,11 @@
       "name": "ID逻辑",
       "author": "Iliary",
       "description": "1×1，1 个方块，逻辑 9 行。从游戏内蓝图导入。",
-      "tags": [],
-      "category": "logic",
-      "category_label": "逻辑",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
+      "category_label": "",
       "game_version": "",
       "width": 1,
       "height": 1,
@@ -30307,9 +30546,11 @@
       "name": "GetBlock点阵钍反替换防炸房逻辑1.2",
       "author": "Iliary",
       "description": "1×1，1 个方块，逻辑 44 行。从游戏内蓝图导入。",
-      "tags": [],
-      "category": "logic",
-      "category_label": "逻辑",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
+      "category_label": "",
       "game_version": "",
       "width": 1,
       "height": 1,
@@ -30337,9 +30578,11 @@
       "name": "GetBlock点阵钍反替换防炸房逻辑",
       "author": "Iliary",
       "description": "2×2，1 个方块，逻辑 39 行。从游戏内蓝图导入。",
-      "tags": [],
-      "category": "logic",
-      "category_label": "逻辑",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
+      "category_label": "",
       "game_version": "",
       "width": 2,
       "height": 2,
@@ -30430,9 +30673,11 @@
       "name": "CP先发制人附属世处",
       "author": "Iliary",
       "description": "3×1，3 个方块，逻辑 62 行。从游戏内蓝图导入。",
-      "tags": [],
-      "category": "logic",
-      "category_label": "逻辑",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
+      "category_label": "",
       "game_version": "",
       "width": 3,
       "height": 1,
@@ -30524,9 +30769,11 @@
       "name": "AKIRA涩图",
       "author": "Iliary",
       "description": "7×7，11 个方块，逻辑 9162 行。从游戏内蓝图导入。",
-      "tags": [],
-      "category": "logic",
-      "category_label": "逻辑",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
+      "category_label": "",
       "game_version": "",
       "width": 7,
       "height": 7,
@@ -31508,9 +31755,11 @@
       "name": "155厄兆火控v1.2",
       "author": "Iliary",
       "description": "155厄兆火控v1.2\n\n/////////////////////[yellow]注意：因为只有开火过一次的厄兆才会自动装填、所以此逻辑链接到未开火过的厄兆时会自动预热、预热期间其余厄兆火控逻辑仍然生效[white]\n/////////////////////\n\n——计算功能：贯穿深度计算+强制半程开火，转火计算，来向更新，雷达共享\n\n——射击方式：低血量贯穿点射、过近强制开火，高血量集火。\n\n——运行效率：雷达循环15行，集火主循环14行,点射循环40行，雷达—集火响应共27行（在无超速下小逻辑可正常控制10厄兆）\n\n我在等贯穿深度，你在等什么？\n\nBy - Iliary艾铭",
-      "tags": [],
-      "category": "logic",
-      "category_label": "逻辑",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
+      "category_label": "",
       "game_version": "",
       "width": 1,
       "height": 1,
@@ -32648,9 +32897,11 @@
       "name": "000标签排序",
       "author": "Iliary",
       "description": "1×1，1 个方块。从游戏内蓝图导入。",
-      "tags": [],
-      "category": "logic",
-      "category_label": "逻辑",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
+      "category_label": "",
       "game_version": "",
       "width": 1,
       "height": 1,
@@ -32772,9 +33023,11 @@
       "name": "处处爆炸房逻辑",
       "author": "Iliary",
       "description": "处处爆炸房逻辑",
-      "tags": [],
-      "category": "logic",
-      "category_label": "逻辑",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
+      "category_label": "",
       "game_version": "",
       "width": 1,
       "height": 1,
@@ -32802,9 +33055,11 @@
       "name": "物资显示4",
       "author": "Iliary",
       "description": "8×6，7 个方块，逻辑 60 行。从游戏内蓝图导入。",
-      "tags": [],
-      "category": "logic",
-      "category_label": "逻辑",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
+      "category_label": "",
       "game_version": "",
       "width": 8,
       "height": 6,
@@ -33039,9 +33294,11 @@
       "name": "喻晓暮：电",
       "author": "Iliary",
       "description": "6×6，33 个方块，逻辑 7180 行。从游戏内蓝图导入。",
-      "tags": [],
-      "category": "logic",
-      "category_label": "逻辑",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
+      "category_label": "",
       "game_version": "",
       "width": 6,
       "height": 6,
@@ -33486,9 +33743,11 @@
       "name": "滚动tips",
       "author": "Iliary",
       "description": "1×1，1 个方块，逻辑 39 行。从游戏内蓝图导入。",
-      "tags": [],
-      "category": "logic",
-      "category_label": "逻辑",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
+      "category_label": "",
       "game_version": "",
       "width": 1,
       "height": 1,
@@ -33516,9 +33775,11 @@
       "name": "反病毒2",
       "author": "Iliary",
       "description": "6×4，18 个方块，逻辑 7 行。从游戏内蓝图导入。",
-      "tags": [],
-      "category": "logic",
-      "category_label": "逻辑",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
+      "category_label": "",
       "game_version": "",
       "width": 6,
       "height": 4,
@@ -34867,8 +35128,10 @@
       "name": "Sharded-changing flag in 244.",
       "author": "Iliary",
       "description": "最终敲定的区块244的Sharded易帜旗帜蓝图。仅做参考。\n\nThe final Sharded flag schematic for Sector 244 has been decided. For reference only.\n\nBy - Tai-fish",
-      "tags": [],
-      "category": "",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
       "category_label": "",
       "game_version": "",
       "width": 15,
@@ -34913,9 +35176,11 @@
       "name": "MCV Worldlogic v1.8ping",
       "author": "Iliary",
       "description": "Ready to pack up your core?\n\nMCV (Mobile Core Vehicle)\nWorld Processor Development Build v1.8\n\nUse `Pinglocation` on a core to pack it into an MCV. Control or command the MCV to attack in order to deploy it back into a core.\n\nUses `cangameover` to prevent the game from ending when the last core is packed up. Memory cells are used to store the items contained inside the MCV core. Supports multiple teams.\n\nThe tile directly beneath the core is used as a unit buffer.\nThe tile directly below the logic processor will be cleared while the logic is running.\n\nv1.5 added precise deployment offset control. While controlling the MCV, moving the cursor close to the MCV allows fine adjustment of the deployment position.\n\nv1.8 now uses `pinglocation` for packing the MCV, improving synchronization performance on multiplayer servers.",
-      "tags": [],
-      "category": "logic",
-      "category_label": "逻辑",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
+      "category_label": "",
       "game_version": "",
       "width": 3,
       "height": 1,
@@ -35072,9 +35337,11 @@
       "name": "90d8d0114faa503637ba671dee7042d4.png",
       "author": "Iliary",
       "description": "260×390，25350 个方块，逻辑 0 行。从游戏内蓝图导入。",
-      "tags": [],
-      "category": "logic",
-      "category_label": "逻辑",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
+      "category_label": "",
       "game_version": "",
       "width": 260,
       "height": 390,
@@ -35102,9 +35369,11 @@
       "name": "钍电站",
       "author": "Iliary",
       "description": "7×6，2 个方块，逻辑 8 行。从游戏内蓝图导入。",
-      "tags": [],
-      "category": "logic",
-      "category_label": "逻辑",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
+      "category_label": "",
       "game_version": "",
       "width": 7,
       "height": 6,
@@ -35184,9 +35453,11 @@
       "name": "读卡器",
       "author": "Iliary",
       "description": "3×2，3 个方块，逻辑 25 行。从游戏内蓝图导入。",
-      "tags": [],
-      "category": "logic",
-      "category_label": "逻辑",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
+      "category_label": "",
       "game_version": "",
       "width": 3,
       "height": 2,
@@ -35432,9 +35703,11 @@
       "name": "计时器，搁置",
       "author": "Iliary",
       "description": "2×8，13 个方块，逻辑 22 行。从游戏内蓝图导入。",
-      "tags": [],
-      "category": "logic",
-      "category_label": "逻辑",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
+      "category_label": "",
       "game_version": "",
       "width": 2,
       "height": 8,
@@ -35592,9 +35865,11 @@
       "name": "火控整合",
       "author": "Iliary",
       "description": "2×3，3 个方块，逻辑 11 行。从游戏内蓝图导入。",
-      "tags": [],
-      "category": "logic",
-      "category_label": "逻辑",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
+      "category_label": "",
       "game_version": "",
       "width": 2,
       "height": 3,
@@ -35630,9 +35905,11 @@
       "name": "我是有字的信息板",
       "author": "Iliary",
       "description": "1×1，1 个方块。从游戏内蓝图导入。",
-      "tags": [],
-      "category": "logic",
-      "category_label": "逻辑",
+      "tags": [
+        "其他"
+      ],
+      "category": "other",
+      "category_label": "",
       "game_version": "",
       "width": 1,
       "height": 1,

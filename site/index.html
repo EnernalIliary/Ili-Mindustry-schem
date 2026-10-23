@@ -17,7 +17,7 @@
     } catch (e) { document.documentElement.dataset.theme = "light"; }
   })();
 </script>
-<link rel="stylesheet" href="style.css?v=20261024b">
+<link rel="stylesheet" href="style.css?v=20261023b">
 </head>
 <body>
 <div class="decor" aria-hidden="true"><i class="blob b1"></i><i class="blob b2"></i><i class="blob b3"></i></div>
@@ -42,7 +42,7 @@
 <main class="wrap">
   <section class="hero reveal">
     <h1>近海小屿 · <span class="grad">蓝图库</span></h1>
-    <p class="lede">Mindustry 蓝图收藏。点开任意一张，复制那串字符，回游戏里 <kbd>Ctrl</kbd>+<kbd>V</kbd> 粘贴即可。</p>
+    <p class="lede">艾铭的Mindustry 蓝图收藏。点开任意一张，点击复制蓝图代码或下载蓝图文件，在游戏中选择导入即可。</p>
     <p class="notice">
       <span class="notice-tag">说明</span>
       这里收录的蓝图并非全部由我制作，部分来自公开分享与朋友交换，版权归原作者所有。
@@ -61,35 +61,33 @@
     </div>
     <div class="filters">
       <div id="tags" class="tags" role="group" aria-label="按游戏内标签筛选（可多选）"></div>
-      <div id="mode-switch" class="mode-switch" hidden>
-        <span class="mode-label">多标签</span>
-        <button type="button" data-mode="or" class="on" aria-pressed="true" title="满足任意一个标签">任一（或）</button>
-        <button type="button" data-mode="and" aria-pressed="false" title="同时满足所有标签">全部（与）</button>
+      <div id="mode-switch" class="mode-switch">
+        <span class="mode-label">标签</span>
+        <button type="button" data-mode="all" class="on" aria-pressed="true" title="不按标签筛选">全部</button>
+        <button type="button" data-mode="or" aria-pressed="false" title="满足任意一个选中的标签">或</button>
+        <button type="button" data-mode="and" aria-pressed="false" title="同时满足所有选中的标签">与</button>
       </div>
-      <label class="range-filter" title="蓝图自带数字标签的含义：生效工厂总数">
-        <span>生效工厂</span>
-        <select id="factory-range">
-          <option value="">不限</option>
-        </select>
-      </label>
-      <label class="logic-filter">
-        <span>逻辑体量</span>
-        <select id="logic-range">
-          <option value="">不限</option>
-          <option value="0">无逻辑</option>
-          <option value="1-50">1 – 50 行</option>
-          <option value="51-200">51 – 200 行</option>
-          <option value="201-1000">201 – 1000 行</option>
-          <option value="1001-10000">1001 – 1 万行</option>
-          <option value="10001+">1 万行以上</option>
-        </select>
-      </label>
+      <div class="dropdown" id="dd-factory" title="蓝图自带数字标签的含义：生效工厂总数">
+        <span class="dd-label">生效工厂</span>
+        <button class="dd-toggle" type="button" aria-haspopup="listbox" aria-expanded="false">
+          <span class="dd-value">不限</span><i class="dd-caret" aria-hidden="true"></i>
+        </button>
+        <div class="dd-panel" role="listbox" aria-label="按生效工厂筛选" hidden></div>
+      </div>
+      <div class="dropdown" id="dd-logic">
+        <span class="dd-label">逻辑体量</span>
+        <button class="dd-toggle" type="button" aria-haspopup="listbox" aria-expanded="false">
+          <span class="dd-value">不限</span><i class="dd-caret" aria-hidden="true"></i>
+        </button>
+        <div class="dd-panel" role="listbox" aria-label="按逻辑体量筛选" hidden></div>
+      </div>
     </div>
     <p id="meta" class="meta"></p>
   </section>
 
   <div id="grid" class="grid" aria-live="polite"></div>
   <p id="empty" class="empty" hidden>没有匹配的蓝图，换个条件试试。</p>
+  <nav id="pager" class="pager" aria-label="分页" hidden></nav>
 </main>
 
 <footer class="site-footer wrap">
@@ -118,6 +116,6 @@
   </div>
 </div>
 
-<script src="app.js?v=20261024b"></script>
+<script src="app.js?v=20261023b"></script>
 </body>
 </html>

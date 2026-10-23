@@ -26,10 +26,11 @@
     search: $("search"),
     tags: $("tags"),
     mode: $("mode-switch"),
-    factory: $("factory-range"),
-    logic: $("logic-range"),
+    factory: $("dd-factory"),
+    logic: $("dd-logic"),
     meta: $("meta"),
     grid: $("grid"),
+    pager: $("pager"),
     empty: $("empty"),
     stamp: $("stamp"),
     statCount: $("stat-count"),
@@ -57,11 +58,27 @@
     source: "",
     query: "",
     cats: [],
-    mode: "or",
+    mode: "all",
     factory: "",
+    factoryLabel: "不限",
     logic: "",
+    logicLabel: "不限",
+    page: 1,
     lastFocus: null,
   };
+
+  const PAGE_SIZE = 120;
+
+  // 逻辑体量的档位（值会被 inLogicRange() 解析）
+  const LOGIC_ITEMS = [
+    { value: "", label: "不限" },
+    { value: "0", label: "无逻辑" },
+    { value: "1-50", label: "1 – 50 行" },
+    { value: "51-200", label: "51 – 200 行" },
+    { value: "201-1000", label: "201 – 1000 行" },
+    { value: "1001-10000", label: "1001 – 1 万行" },
+    { value: "10001+", label: "1 万行以上" },
+  ];
 
   /* ---------- 工具 ---------- */
 
@@ -189,62 +206,227 @@
     const data = state.data;
     if (!data) return;
     const list = data.blueprints.filter(matches);
-    const limit = 400;
+    const pages = Math.max(1, Math.ceil(list.length / PAGE_SIZE));
+    state.page = Math.min(Math.max(1, state.page), pages);
+    const start = (state.page - 1) * PAGE_SIZE;
+    const end = Math.min(start + PAGE_SIZE, list.length);
 
-    els.grid.innerHTML = list.slice(0, limit).map(cardHtml).join("");
+    els.grid.innerHTML = list.slice(start, end).map(cardHtml).join("");
     els.empty.hidden = list.length > 0;
 
-    const bits = [`显示 ${fmtNum(Math.min(list.length, limit))} / ${fmtNum(data.count)} 张`];
+    const bits = list.length
+      ? [`第 ${fmtNum(start + 1)}–${fmtNum(end)} 张 / 共 ${fmtNum(list.length)} 张`]
+      : ["没有匹配的蓝图"];
     if (state.cats.length) {
-      bits.push(`标签：${state.cats.join(state.mode === "and" ? " 且 " : " 或 ")}`);
+      const join = state.mode === "and" ? " 且 " : " 或 ";
+      bits.push(`标签：${state.cats.join(join)}`);
     } else {
       bits.push("标签：全部");
     }
-    if (state.factory) bits.push(`生效工厂：${fmtFactory(state.factory)}`);
-    if (state.logic && els.logic.selectedOptions[0]) {
-      bits.push(`逻辑：${els.logic.selectedOptions[0].textContent.trim()}`);
-    }
+    if (state.factory) bits.push(`生效工厂：${state.factoryLabel}`);
+    if (state.logic) bits.push(`逻辑：${state.logicLabel}`);
     if (state.query.trim()) bits.push(`搜索「${state.query.trim()}」`);
-    if (list.length > limit) bits.push(`列表只铺前 ${limit} 张，缩小范围更快`);
     els.meta.textContent = bits.join(" · ");
+    pop(els.meta);
+    syncHash();
 
+    renderPager(list.length, pages);
     observeCards();
     watchImages();
+  }
+
+  /* ---------- 分页 ---------- */
+
+  // 1 … 4 5 6 … 12：当前页左右各留一页，首尾恒显
+  function pageSlots(page, pages) {
+    const keep = new Set([1, pages]);
+    for (let p = page - 1; p <= page + 1; p++) if (p >= 1 && p <= pages) keep.add(p);
+    const nums = [...keep].sort((a, b) => a - b);
+    const out = [];
+    nums.forEach((n, i) => {
+      if (i && n - nums[i - 1] > 1) out.push(null);
+      out.push(n);
+    });
+    return out;
+  }
+
+  function renderPager(total, pages) {
+    if (!els.pager) return;
+    if (pages <= 1) {
+      els.pager.innerHTML = "";
+      els.pager.hidden = true;
+      return;
+    }
+    els.pager.hidden = false;
+    const at = state.page;
+    const step = (label, page, opts = {}) => `
+      <button class="page-btn${opts.on ? " on" : ""}${opts.step ? " step" : ""}" type="button"
+              data-page="${page}"${opts.on ? ' aria-current="page"' : ""}${opts.disabled ? " disabled" : ""}
+              aria-label="${label}">${opts.text || label}</button>`;
+
+    const parts = [step("上一页", at - 1, { step: true, disabled: at === 1, text: "‹" })];
+    for (const n of pageSlots(at, pages)) {
+      parts.push(n === null
+        ? `<span class="page-gap" aria-hidden="true">…</span>`
+        : step(`第 ${n} 页`, n, { on: n === at }));
+    }
+    parts.push(step("下一页", at + 1, { step: true, disabled: at === pages, text: "›" }));
+    els.pager.innerHTML = parts.join("");
+  }
+
+  function gotoPage(page, smooth = true) {
+    if (!state.data) return;
+    state.page = page;
+    render(); // 页码与地址栏由 render() 里的 syncHash() 统一维护
+    if (smooth && typeof els.grid.scrollIntoView === "function") {
+      els.grid.scrollIntoView({
+        behavior: reduceMotion() ? "auto" : "smooth",
+        block: "start",
+      });
+    }
+  }
+
+  // 地址栏同步页码：可刷新 / 分享；#p=1 时不写（保持地址干净）
+  function syncHash() {
+    const want = state.page > 1 ? `#p=${state.page}` : "";
+    const now = window.location.hash || "";
+    if (want === now) return;
+    if (!want && !/^#p=\d+$/.test(now)) return; // 别人的锚点不碰
+    try {
+      history.replaceState(null, "", want || `${window.location.pathname}${window.location.search}`);
+    } catch (err) { /* file:// 下可能抛错，忽略 */ }
+  }
+
+  // 数字/文案变化时轻轻闪一下，让「筛选生效」看得见
+  function reduceMotion() {    return typeof window.matchMedia === "function"
+      && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  }
+
+  function pop(node) {
+    if (!node || reduceMotion()) return;
+    node.classList.remove("pop");
+    void node.offsetWidth;
+    node.classList.add("pop");
   }
 
   function renderTags() {
     // 游戏内自己打的标签（蓝图文件里的 labels）。
     // 顺序来自游戏里那张「000标签排序」蓝图，构建 index.json 时就排好了。
     const all = state.data.labels || [];
-    const chip = (label, count, active, value) => `
-      <button class="chip${active ? " active" : ""}" type="button" aria-pressed="${active}" data-cat="${escapeHtml(value || "")}" title="${escapeHtml(label)}">
+    const chip = (label, count, active) => `
+      <button class="chip${active ? " active" : ""}" type="button" aria-pressed="${active}" data-cat="${escapeHtml(label)}" title="${escapeHtml(label)}">
         ${escapeHtml(label)}<span class="n">${fmtNum(count)}</span>
       </button>`;
 
-    els.tags.innerHTML =
-      chip("全部", state.data.count, state.cats.length === 0, "") +
-      all.map((c) => chip(c.name, c.count, state.cats.includes(c.name), c.name)).join("");
+    els.tags.innerHTML = all
+      .map((c) => chip(c.name, c.count, state.cats.includes(c.name)))
+      .join("");
 
-    // 选了 2 个以上才显示「与/或」开关
+    // 「全部 / 或 / 与」三态开关：全部 = 不按标签筛；与 需要至少两个标签
     if (els.mode) {
-      els.mode.hidden = state.cats.length < 2;
       for (const btn of els.mode.querySelectorAll("button[data-mode]")) {
-        const on = btn.dataset.mode === state.mode;
+        const mode = btn.dataset.mode;
+        const on = mode === state.mode;
         btn.classList.toggle("on", on);
         btn.setAttribute("aria-pressed", String(on));
+        btn.disabled = mode === "and" ? state.cats.length < 2 : mode === "or" ? state.cats.length < 1 : false;
       }
     }
     els.statTags.textContent = fmtNum(all.length);
   }
 
-  function renderFactories() {
-    const items = state.data.factories || [];
-    for (const item of items) {
-      const opt = document.createElement("option");
-      opt.value = item.name;
-      opt.textContent = `${fmtFactory(item.name)} · ${fmtNum(item.count)} 张`;
-      els.factory.appendChild(opt);
+  /* ---------- 自定义下拉（带展开动效） ---------- */
+
+  function buildDropdown(root, items, onPick) {
+    const toggle = root.querySelector(".dd-toggle");
+    const panel = root.querySelector(".dd-panel");
+    const valueEl = root.querySelector(".dd-value");
+    let value = "";
+    let open = false;
+
+    panel.innerHTML = items
+      .map((item, i) => `
+        <button class="dd-item${item.value === value ? " sel" : ""}" type="button" role="option"
+                aria-selected="${item.value === value}" data-value="${escapeHtml(item.value)}" style="--i:${i}">
+          <span>${escapeHtml(item.label)}</span><i class="dd-check" aria-hidden="true"></i>
+        </button>`)
+      .join("");
+
+    // 展开时把外层 .panel 的层级抬起来，否则会压在筛选行/卡片下面
+    const panelHost = root.closest(".panel");
+
+    function setOpen(next) {
+      open = next;
+      root.classList.toggle("open", open);
+      if (panelHost) panelHost.classList.toggle("dd-open", open);
+      toggle.setAttribute("aria-expanded", String(open));
+      panel.hidden = !open;
+      if (open) {
+        // 重播一次逐项入场
+        panel.classList.remove("in");
+        void panel.offsetWidth;
+        panel.classList.add("in");
+        const sel = panel.querySelector(".dd-item.sel") || panel.querySelector(".dd-item");
+        if (sel && typeof sel.scrollIntoView === "function") sel.scrollIntoView({ block: "nearest" });
+      }
     }
+
+    function pick(item) {
+      value = item.value;
+      valueEl.textContent = item.label;
+      for (const node of panel.querySelectorAll(".dd-item")) {
+        const on = node.dataset.value === value;
+        node.classList.toggle("sel", on);
+        node.setAttribute("aria-selected", String(on));
+      }
+      setOpen(false);
+      onPick(value, item.label);
+    }
+
+    toggle.addEventListener("click", (ev) => {
+      ev.stopPropagation();
+      setOpen(!open);
+    });
+
+    panel.addEventListener("click", (ev) => {
+      const node = ev.target.closest(".dd-item");
+      if (!node) return;
+      const item = items.find((it) => it.value === node.dataset.value);
+      if (item) pick(item);
+    });
+
+    document.addEventListener("click", (ev) => {
+      if (open && !root.contains(ev.target)) setOpen(false);
+    });
+    document.addEventListener("keydown", (ev) => {
+      if (ev.key === "Escape" && open) setOpen(false);
+    });
+
+    valueEl.textContent = items[0].label;
+    return { pick };
+  }
+
+  function initDropdowns() {
+    const factories = state.data.factories || [];
+    buildDropdown(
+      els.factory,
+      [{ value: "", label: "不限" }].concat(
+        factories.map((f) => ({ value: f.name, label: `${fmtFactory(f.name)} · ${fmtNum(f.count)} 张` })),
+      ),
+      (value, label) => {
+        state.factory = value;
+        state.factoryLabel = label;
+        state.page = 1;
+        render();
+      },
+    );
+
+    buildDropdown(els.logic, LOGIC_ITEMS, (value, label) => {
+      state.logic = value;
+      state.logicLabel = label;
+      state.page = 1;
+      render();
+    });
   }
 
   function renderStats() {
@@ -427,7 +609,7 @@
     const saved = localStorage.getItem("bp-theme");
     if (saved !== "light" && saved !== "dark") {
       document.documentElement.dataset.theme =
-        matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        typeof matchMedia === "function" && matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
     }
     els.theme.addEventListener("click", () => {
       const next = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
@@ -487,8 +669,12 @@
       return;
     }
 
+    // 支持分享 / 刷新后停在同一页：地址里的 #p=3
+    const hashPage = /(?:^|[#&])p=(\d+)/.exec(window.location.hash || "");
+    if (hashPage) state.page = Math.max(1, parseInt(hashPage[1], 10) || 1);
+
     renderStats();
-    renderFactories();
+    initDropdowns();
     renderTags();
     render();
   }
@@ -498,6 +684,7 @@
   function bind() {
     els.search.addEventListener("input", debounce((ev) => {
       state.query = ev.target.value;
+      state.page = 1;
       render();
     }, 130));
 
@@ -505,14 +692,16 @@
       const chip = ev.target.closest(".chip");
       if (!chip) return;
       const value = chip.dataset.cat;
-      if (!value) {
-        // 「全部」= 清空
-        state.cats = [];
-      } else if (state.cats.includes(value)) {
+      if (!value) return;
+      if (state.cats.includes(value)) {
         state.cats = state.cats.filter((name) => name !== value);
       } else {
         state.cats = [...state.cats, value];
+        if (state.mode === "all") state.mode = "or"; // 从「全部」切到「或」
       }
+      if (state.cats.length < 2 && state.mode === "and") state.mode = "or";
+      if (state.cats.length === 0) state.mode = "all";
+      state.page = 1;
       renderTags();
       render();
     });
@@ -520,22 +709,26 @@
     if (els.mode) {
       els.mode.addEventListener("click", (ev) => {
         const btn = ev.target.closest("button[data-mode]");
-        if (!btn) return;
-        state.mode = btn.dataset.mode === "and" ? "and" : "or";
+        if (!btn || btn.disabled) return;
+        state.mode = btn.dataset.mode;
+        if (state.mode === "all") state.cats = [];
+        state.page = 1;
         renderTags();
         render();
       });
     }
 
-    els.logic.addEventListener("change", () => {
-      state.logic = els.logic.value;
-      render();
-    });
+    if (els.pager) {
+      els.pager.addEventListener("click", (ev) => {
+        const btn = ev.target.closest(".page-btn");
+        if (!btn || btn.disabled) return;
+        const next = parseInt(btn.dataset.page, 10);
+        if (Number.isFinite(next) && next !== state.page) gotoPage(next);
+      });
+    }
 
-    els.factory.addEventListener("change", () => {
-      state.factory = els.factory.value;
-      render();
-    });
+    // 「生效工厂」「逻辑体量」是自定义下拉，变更回调在 initDropdowns() 里挂
+
 
     els.grid.addEventListener("click", (ev) => {
       const card = ev.target.closest(".card");
